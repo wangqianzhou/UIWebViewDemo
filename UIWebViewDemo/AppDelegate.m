@@ -28,6 +28,7 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
+    
     [APIHookManager hookAPIs];
     
     return YES;

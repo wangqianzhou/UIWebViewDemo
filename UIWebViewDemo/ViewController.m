@@ -10,15 +10,17 @@
 #import "QuadCurveMenu.h"
 #import <QuartzCore/QuartzCore.h>
 #import <objc/message.h>
+#import "UIView+Toast.h"
+#import "URLDataProvider.h"
 
-@interface ViewController ()<UITextFieldDelegate, UIWebViewDelegate, QuadCurveMenuDelegate>
+@interface ViewController ()<UITextFieldDelegate, UIWebViewDelegate, QuadCurveMenuDelegate, UITableViewDelegate>
 @property(nonatomic, retain)UIWebView* wkview;
-@property(nonatomic, retain)UIWebView* wkview_1;
+@property(nonatomic, retain)URLDataProvider* dataProvider;
+@property(nonatomic, retain)UITableView* tabView;
 @end
 
 @implementation ViewController
 @synthesize wkview = _wkview;
-@synthesize wkview_1 = _wkview_1;
 
 - (id)init
 {
@@ -38,6 +40,7 @@
     self.view = mainView;
     
     UIWebView* webView = [[[UIWebView alloc] initWithFrame:rect] autorelease];
+    webView.scalesPageToFit = YES;
     webView.delegate = self;
     [mainView addSubview:webView];
     self.wkview = webView;
@@ -116,7 +119,14 @@
 - (void)dealloc
 {
     [_wkview release], _wkview = nil;
-    [_wkview_1 release], _wkview_1 = nil;
+   
+    [_tabView removeFromSuperview];
+    _tabView.dataSource = nil;
+    _tabView.delegate = nil;
+    
+    [_tabView release], _tabView = nil;
+
+    [_dataProvider release], _dataProvider = nil;
     
     [super dealloc];
 }
@@ -170,10 +180,24 @@
     [self updateLoadingState];
 }
 
+#pragma mark- UITableViewDelegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* url = [[[tableView cellForRowAtIndexPath:indexPath] textLabel] text];    
+    [self loadWithURLString:url];
+    
+    [_tabView removeFromSuperview];
+    _tabView.dataSource = nil;
+    _tabView.delegate = nil;
+    
+    self.tabView = nil;
+    self.dataProvider = nil;
+}
+
 #pragma mark- QuadCurveMenuDelegate
 - (void)quadCurveMenu:(QuadCurveMenu *)menu didSelectIndex:(NSInteger)idx
 {
-    NSString* selName = [NSString stringWithFormat:@"onBtn_%ld", idx];
+    NSString* selName = [NSString stringWithFormat:@"onBtn_%ld", (long)idx];
     SEL sel = NSSelectorFromString(selName);
     
     objc_msgSend(self, sel);
@@ -181,12 +205,40 @@
 
 - (void)onBtn_0
 {
-    [self openlink];
+    self.tabView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
+    self.dataProvider = [[[URLDataProvider alloc] init] autorelease];
+    
+    _tabView.dataSource = _dataProvider;
+    _tabView.delegate = self;
+    
+    [self.view addSubview:_tabView];
 }
 
 - (void)onBtn_1
 {
-    
+    NSURL* url = [[_wkview request] URL];
+    if (url != nil)
+    {
+        NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
+        
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *documentsDirectory = [paths objectAtIndex:0];
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"cookies.plist"];
+        
+        __block NSMutableArray* propertyArray = [NSMutableArray array];
+        [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie* ck, NSUInteger idx, BOOL *stop) {
+            [propertyArray addObject:[ck properties]];
+        }];
+        
+        BOOL bWriteResult = [propertyArray writeToFile:path atomically:YES];
+        
+        NSString* prop = [NSString stringWithFormat:@"Cookies Saved:%@", (bWriteResult ? @"success" : @"failed")];
+        [self.view makeToast:prop];
+    }
+    else
+    {
+        [self.view makeToast:@"Empty URL"];
+    }
 }
 
 - (void)onBtn_2
@@ -195,8 +247,19 @@
 }
 
 - (void)onBtn_3
-{
+{   
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+    NSString *documentsDirectory = [paths objectAtIndex:0];
+    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"cookies.plist"];
+ 
+    NSArray* propertyArray = [NSArray arrayWithContentsOfFile:path];
     
+    [propertyArray enumerateObjectsUsingBlock:^(NSDictionary* properties, NSUInteger idx, BOOL *stop) {
+        NSHTTPCookie* ck = [NSHTTPCookie cookieWithProperties:properties];
+        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:ck];
+    }];
+    
+    [self.view makeToast:@"Set Cookies"];
 }
 
 - (void)onBtn_4
@@ -206,7 +269,14 @@
 
 - (void)onBtn_5
 {
+    NSHTTPCookieStorage* storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
+    NSArray* allCookies = [storage cookies];
     
+    [allCookies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
+        [storage deleteCookie:obj]; 
+    }];
+    
+    [self.view makeToast:@"Remove All Cookies"];
 }
 
 - (void)onBtn_6
@@ -220,20 +290,18 @@
 }
 
 #pragma mark- ButtonActions
-- (void)openlink
-{
-    NSString* link =
-    @"http://m.hao123.com";
-//  @"http://sina.com.cn";
-
-    
-    [self loadWithURLString:link];
-}
-
 - (void)loadWithURLString:(NSString*)link
 {
     NSURL* url = [NSURL URLWithString:link];
+    
+    //    +[NSURLRequest(NSHTTPURLRequest) setAllowsAnyHTTPSCertificate:forHost:]
+    Class cls = [NSURLRequest class];
+    SEL sel = NSSelectorFromString(@"setAllowsAnyHTTPSCertificate:forHost:");
+    objc_msgSend(cls, sel, YES, [url host]);
+    
+
     NSMutableURLRequest* mRequest = [NSMutableURLRequest requestWithURL:url];
+    
     [_wkview loadRequest:mRequest];
 }
 
