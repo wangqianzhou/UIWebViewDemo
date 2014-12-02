@@ -4,7 +4,7 @@
 
 static NSString* URLList[] = 
 {
-    @"http://sina.com.cn",    
+    @"http://sina.cn/?wm=4007",
     @"https://kyfw.12306.cn/otn",
     @"https://kyfw.12306.cn/otn/confirmPassenger/initDc",
     @"https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=passenger&rand=randp",

@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "APIHookManager.h"
+#import "CustomURLProtocol.h"
 
 @implementation AppDelegate
 
@@ -28,8 +28,7 @@
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     
-    
-    [APIHookManager hookAPIs];
+    [NSURLProtocol registerClass:[CustomURLProtocol class]];
     
     return YES;
 }

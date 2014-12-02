@@ -36,7 +36,6 @@
 		9310317817ACA0F4003BA1EE /* QuadCurveMenuItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310317617ACA0F4003BA1EE /* QuadCurveMenuItem.m */; };
 		9310317A17ACA32C003BA1EE /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310317917ACA32C003BA1EE /* QuartzCore.framework */; };
 		9310319017ACAB53003BA1EE /* CocoaHook.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9310318F17ACAB53003BA1EE /* CocoaHook.mm */; };
-		9310319317ACABB5003BA1EE /* APIHookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310319217ACABB3003BA1EE /* APIHookManager.m */; };
 		93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CAF32A1A1FB13000D37400 /* UIView+Toast.m */; };
 		93CAF32E1A1FB46700D37400 /* URLDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CAF32D1A1FB46700D37400 /* URLDataProvider.m */; };
 /* End PBXBuildFile section */
@@ -93,8 +92,6 @@
 		9310317917ACA32C003BA1EE /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		9310318E17ACAB53003BA1EE /* CocoaHook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CocoaHook.h; sourceTree = "<group>"; };
 		9310318F17ACAB53003BA1EE /* CocoaHook.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CocoaHook.mm; sourceTree = "<group>"; };
-		9310319117ACABB2003BA1EE /* APIHookManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = APIHookManager.h; sourceTree = "<group>"; };
-		9310319217ACABB3003BA1EE /* APIHookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = APIHookManager.m; sourceTree = "<group>"; };
 		93C9E4761950242300516B63 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		93CAF3291A1FB13000D37400 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		93CAF32A1A1FB13000D37400 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
@@ -158,8 +155,6 @@
 				9310312517AC9F2D003BA1EE /* AppDelegate.m */,
 				9310312D17AC9F2D003BA1EE /* ViewController.h */,
 				9310312E17AC9F2D003BA1EE /* ViewController.m */,
-				9310319117ACABB2003BA1EE /* APIHookManager.h */,
-				9310319217ACABB3003BA1EE /* APIHookManager.m */,
 				930EE7881A1FA5B900052723 /* CustomURLProtocol.h */,
 				930EE7891A1FA5B900052723 /* CustomURLProtocol.m */,
 				93CAF32F1A1FB4C300D37400 /* URLList.h */,
@@ -323,7 +318,6 @@
 				9310319017ACAB53003BA1EE /* CocoaHook.mm in Sources */,
 				930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */,
 				93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */,
-				9310319317ACABB5003BA1EE /* APIHookManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
