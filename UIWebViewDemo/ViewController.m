@@ -216,29 +216,7 @@
 
 - (void)onBtn_1
 {
-    NSURL* url = [[_wkview request] URL];
-    if (url != nil)
-    {
-        NSArray* cookies = [[NSHTTPCookieStorage sharedHTTPCookieStorage] cookiesForURL:url];
-        
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:@"cookies.plist"];
-        
-        __block NSMutableArray* propertyArray = [NSMutableArray array];
-        [cookies enumerateObjectsUsingBlock:^(NSHTTPCookie* ck, NSUInteger idx, BOOL *stop) {
-            [propertyArray addObject:[ck properties]];
-        }];
-        
-        BOOL bWriteResult = [propertyArray writeToFile:path atomically:YES];
-        
-        NSString* prop = [NSString stringWithFormat:@"Cookies Saved:%@", (bWriteResult ? @"success" : @"failed")];
-        [self.view makeToast:prop];
-    }
-    else
-    {
-        [self.view makeToast:@"Empty URL"];
-    }
+
 }
 
 - (void)onBtn_2
@@ -248,18 +226,7 @@
 
 - (void)onBtn_3
 {   
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-    NSString *documentsDirectory = [paths objectAtIndex:0];
-    NSString *path = [documentsDirectory stringByAppendingPathComponent:@"cookies.plist"];
- 
-    NSArray* propertyArray = [NSArray arrayWithContentsOfFile:path];
-    
-    [propertyArray enumerateObjectsUsingBlock:^(NSDictionary* properties, NSUInteger idx, BOOL *stop) {
-        NSHTTPCookie* ck = [NSHTTPCookie cookieWithProperties:properties];
-        [[NSHTTPCookieStorage sharedHTTPCookieStorage] setCookie:ck];
-    }];
-    
-    [self.view makeToast:@"Set Cookies"];
+
 }
 
 - (void)onBtn_4
@@ -269,14 +236,7 @@
 
 - (void)onBtn_5
 {
-    NSHTTPCookieStorage* storage = [NSHTTPCookieStorage sharedHTTPCookieStorage];
-    NSArray* allCookies = [storage cookies];
-    
-    [allCookies enumerateObjectsUsingBlock:^(id obj, NSUInteger idx, BOOL *stop) {
-        [storage deleteCookie:obj]; 
-    }];
-    
-    [self.view makeToast:@"Remove All Cookies"];
+
 }
 
 - (void)onBtn_6
