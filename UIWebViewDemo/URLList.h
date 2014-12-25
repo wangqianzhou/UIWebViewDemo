@@ -4,7 +4,12 @@
 
 static NSString* URLList[] = 
 {
+    @"http://m.weibo.cn",
+    @"http://tools.ietf.org/html/rfc7234",
+    @"http://tools.ietf.org/html/rfc7234#section-7.2.2",
+    @"http://tools.ietf.org/html/rfc7234#section-4.3.3",    
     @"http://sina.cn/?wm=4007",
+    @"https://www.pingan.com.cn/pinganone/pa/directToMenu.screen?directToMenu=bank_index_index",
     @"https://kyfw.12306.cn/otn",
     @"https://kyfw.12306.cn/otn/confirmPassenger/initDc",
     @"https://kyfw.12306.cn/otn/passcodeNew/getPassCodeNew?module=passenger&rand=randp",

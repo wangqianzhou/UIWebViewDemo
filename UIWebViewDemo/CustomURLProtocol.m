@@ -18,11 +18,11 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
-    if ( ![[[request URL] scheme] isEqualToString:@"http"] )
-    {
-        return NO;
-    }
-    
+//    if ( ![[[request URL] scheme] isEqualToString:@"http"] )
+//    {
+//        return NO;
+//    }
+//    
     return ([[self class] propertyForKey:@"CustomProtocol" inRequest:request] == nil);
 }
 
@@ -31,6 +31,8 @@
     if (self = [super initWithRequest:request cachedResponse:cachedResponse client:client])
     {
         self.mReuqest = [request mutableCopy];
+        
+        NSLog(@"\n==ProtocolInitRequest:%@policy:%lu\n\n==================\n\n", _mReuqest, _mReuqest.cachePolicy);
         [[self class] setProperty:@"" forKey:@"CustomProtocol" inRequest:_mReuqest];
     }
     
@@ -57,6 +59,7 @@
 
 - (void)startLoading
 {
+//    NSLog(@"\n==ProtocolRequest:%@policy:%lu\n\n==================\n\n", _mReuqest, _mReuqest.cachePolicy);
     self.connection = [[[NSURLConnection alloc] initWithRequest:_mReuqest delegate:self startImmediately:NO] autorelease];
     
     [_connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:[[NSRunLoop currentRunLoop] currentMode]];
@@ -84,16 +87,21 @@
 
 - (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
 {
-    NSURLCredential* credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-    [challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
+//    NSURLCredential* credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
+//    [challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
 }
 
 
 #pragma mark- NSURLConnectionDataDelegate
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
 {
-    [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
-    
+    if (response != nil)
+    {
+        [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
+        [connection cancel];
+        
+        return nil;
+    }
     
     return request;
 }
