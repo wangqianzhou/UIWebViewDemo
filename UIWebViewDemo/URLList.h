@@ -5,6 +5,8 @@
 static NSString* URLList[] = 
 {
     @"http://m.weibo.cn",
+    @"http://3g.ganji.com",
+    @"http://3g.ganji.com/gz_zpshichangyingxiao/?ifid=gj3g_index_remenhangye_zpshichangyingxiao",
     @"http://tools.ietf.org/html/rfc7234",
     @"http://tools.ietf.org/html/rfc7234#section-7.2.2",
     @"http://tools.ietf.org/html/rfc7234#section-4.3.3",    
