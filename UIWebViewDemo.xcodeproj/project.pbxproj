@@ -256,8 +256,13 @@
 		9310310A17AC9F2D003BA1EE /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0460;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = uc;
+				TargetAttributes = {
+					9310311117AC9F2D003BA1EE = {
+						DevelopmentTeam = 63WDBES6G3;
+					};
+				};
 			};
 			buildConfigurationList = 9310310D17AC9F2D003BA1EE /* Build configuration list for PBXProject "UIWebViewDemo" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -349,6 +354,7 @@
 				CODE_SIGN_ENTITLEMENTS = UIWebViewDemo/Entitlements.plist;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -395,11 +401,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: wang qianzhou (F47674DVV4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang qianzhou (F47674DVV4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIWebViewDemo/UIWebViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ucweb.iphone.uiwebview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -410,11 +417,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_ENTITLEMENTS = "";
-				CODE_SIGN_IDENTITY = "iPhone Developer: wang qianzhou (F47674DVV4)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: wang qianzhou (F47674DVV4)";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIWebViewDemo/UIWebViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ucweb.iphone.uiwebview;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

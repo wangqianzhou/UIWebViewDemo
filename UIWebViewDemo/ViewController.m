@@ -42,6 +42,7 @@
     UIWebView* webView = [[[UIWebView alloc] initWithFrame:rect] autorelease];
     webView.scalesPageToFit = YES;
     webView.delegate = self;
+    webView.allowsLinkPreview = YES;
     [mainView addSubview:webView];
     self.wkview = webView;
     
@@ -151,7 +152,7 @@
     return NO;
 }
 
-- (NSUInteger)supportedInterfaceOrientations
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations
 {
     return UIInterfaceOrientationMaskPortrait;
 }
@@ -255,10 +256,10 @@
     NSURL* url = [NSURL URLWithString:link];
     
     //    +[NSURLRequest(NSHTTPURLRequest) setAllowsAnyHTTPSCertificate:forHost:]
-    Class cls = [NSURLRequest class];
-    SEL sel = NSSelectorFromString(@"setAllowsAnyHTTPSCertificate:forHost:");
-    objc_msgSend(cls, sel, YES, [url host]);
-    
+//    Class cls = [NSURLRequest class];
+//    SEL sel = NSSelectorFromString(@"setAllowsAnyHTTPSCertificate:forHost:");
+//    objc_msgSend(cls, sel, YES, [url host]);
+//    
 
     NSMutableURLRequest* mRequest = [NSMutableURLRequest requestWithURL:url];
     

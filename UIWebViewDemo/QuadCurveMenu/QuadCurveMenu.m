@@ -208,7 +208,7 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
 
 
 - (void)_setMenu {
-	int count = [_menusArray count];
+	NSInteger count = [_menusArray count];
     for (int i = 0; i < count; i ++)
     {
         QuadCurveMenuItem *item = [_menusArray objectAtIndex:i];

@@ -18,11 +18,6 @@
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
-//    if ( ![[[request URL] scheme] isEqualToString:@"http"] )
-//    {
-//        return NO;
-//    }
-//    
     return ([[self class] propertyForKey:@"CustomProtocol" inRequest:request] == nil);
 }
 
@@ -32,7 +27,6 @@
     {
         self.mReuqest = [request mutableCopy];
         
-        NSLog(@"\n==ProtocolInitRequest:%@policy:%lu\n\n==================\n\n", _mReuqest, _mReuqest.cachePolicy);
         [[self class] setProperty:@"" forKey:@"CustomProtocol" inRequest:_mReuqest];
     }
     
@@ -59,8 +53,7 @@
 
 - (void)startLoading
 {
-//    NSLog(@"\n==ProtocolRequest:%@policy:%lu\n\n==================\n\n", _mReuqest, _mReuqest.cachePolicy);
-    self.connection = [[[NSURLConnection alloc] initWithRequest:_mReuqest delegate:self startImmediately:NO] autorelease];
+   self.connection = [[[NSURLConnection alloc] initWithRequest:_mReuqest delegate:self startImmediately:NO] autorelease];
     
     [_connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:[[NSRunLoop currentRunLoop] currentMode]];
     [_connection start];
@@ -79,18 +72,6 @@
 {
     [[self client] URLProtocol:self didFailWithError:error];
 }
-
-- (BOOL)connectionShouldUseCredentialStorage:(NSURLConnection *)connection
-{
-    return YES;
-}
-
-- (void)connection:(NSURLConnection *)connection willSendRequestForAuthenticationChallenge:(NSURLAuthenticationChallenge *)challenge
-{
-//    NSURLCredential* credential = [NSURLCredential credentialForTrust:challenge.protectionSpace.serverTrust];
-//    [challenge.sender useCredential:credential forAuthenticationChallenge:challenge];
-}
-
 
 #pragma mark- NSURLConnectionDataDelegate
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
@@ -115,19 +96,6 @@
 {
     [[self client] URLProtocol:self didLoadData:data];
 }
-
-- (NSInputStream *)connection:(NSURLConnection *)connection needNewBodyStream:(NSURLRequest *)request
-{
-    return nil;
-}
-
-- (void)connection:(NSURLConnection *)connection   didSendBodyData:(NSInteger)bytesWritten
- totalBytesWritten:(NSInteger)totalBytesWritten
-totalBytesExpectedToWrite:(NSInteger)totalBytesExpectedToWrite
-{
-
-}
-
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
     return cachedResponse;
