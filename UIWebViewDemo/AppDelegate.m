@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "CustomURLProtocol.h"
+#import "CustomPreferences.h"
 
 @implementation AppDelegate
 
@@ -27,12 +27,8 @@
     self.viewController = [[[ViewController alloc] init] autorelease];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
-    
-    [NSURLProtocol registerClass:[CustomURLProtocol class]];
-    
-    NSDictionary *dictionary = @{@"UserAgent": @"Mozilla/5.0 (iPhone Simulator; CPU iPhone OS 8_1 like Mac OS X; zh-CN) AppleWebKit/537.51.1 (KHTML, like Gecko) Mobile/12B411 UCBrowser/10.2.5.533 Mobile"};
-    
-    [[NSUserDefaults standardUserDefaults] registerDefaults:dictionary];
+
+    [CustomPreferences initPreferences];
     
     return YES;
 }

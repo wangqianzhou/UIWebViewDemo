@@ -254,13 +254,6 @@
 - (void)loadWithURLString:(NSString*)link
 {
     NSURL* url = [NSURL URLWithString:link];
-    
-    //    +[NSURLRequest(NSHTTPURLRequest) setAllowsAnyHTTPSCertificate:forHost:]
-//    Class cls = [NSURLRequest class];
-//    SEL sel = NSSelectorFromString(@"setAllowsAnyHTTPSCertificate:forHost:");
-//    objc_msgSend(cls, sel, YES, [url host]);
-//    
-
     NSMutableURLRequest* mRequest = [NSMutableURLRequest requestWithURL:url];
     
     [_wkview loadRequest:mRequest];
