@@ -72,12 +72,6 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     return self;
 }
 
-- (void)dealloc
-{
-    [_addButton release];
-    [_menusArray release];
-    [super dealloc];
-}
 
 
 #pragma mark - images
@@ -192,7 +186,6 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     {
         return;
     }
-    [_menusArray release];
     _menusArray = [aMenusArray copy];
     
     
@@ -252,7 +245,7 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
         SEL selector = self.isExpanding ? @selector(_expand) : @selector(_close);
 
         // Adding timer to runloop to make sure UI event won't block the timer from firing
-        _timer = [[NSTimer timerWithTimeInterval:timeOffset target:self selector:selector userInfo:nil repeats:YES] retain];
+        _timer = [NSTimer timerWithTimeInterval:timeOffset target:self selector:selector userInfo:nil repeats:YES];
         [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSRunLoopCommonModes];
     }
 }
@@ -263,12 +256,11 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     if (_flag == [_menusArray count])
     {
         [_timer invalidate];
-        [_timer release];
         _timer = nil;
         return;
     }
     
-    int tag = 1000 + _flag;
+    NSInteger tag = 1000 + _flag;
     QuadCurveMenuItem *item = (QuadCurveMenuItem *)[self viewWithTag:tag];
     
     CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];
@@ -305,12 +297,11 @@ static CGPoint RotateCGPointAroundCenter(CGPoint point, CGPoint center, float an
     if (_flag == -1)
     {
         [_timer invalidate];
-        [_timer release];
         _timer = nil;
         return;
     }
     
-    int tag = 1000 + _flag;
+    NSInteger tag = 1000 + _flag;
      QuadCurveMenuItem *item = (QuadCurveMenuItem *)[self viewWithTag:tag];
     
     CAKeyframeAnimation *rotateAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.rotation.z"];

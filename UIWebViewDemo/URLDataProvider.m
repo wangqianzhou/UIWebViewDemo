@@ -26,7 +26,7 @@
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:@"URLCell"];
     if (cell == nil)
     {
-        cell = [[[UITableViewCell alloc] init] autorelease];
+        cell = [[UITableViewCell alloc] init];
     }
     
     cell.textLabel.text = URLList[indexPath.row];

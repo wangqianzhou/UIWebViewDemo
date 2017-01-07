@@ -17,7 +17,6 @@
     [self initUserAgent];
     [self initCustomProtocol];
 //    [self initCacheModel];
-    [self initPageCacheCapacity];
 }
 
 + (void)initCustomProtocol
@@ -38,52 +37,5 @@
     ((void(*)(Class cls, SEL sel, int))objc_msgSend)(wvCls, @selector(_setCacheModel:), 2);
 }
 
-+(void)initPageCacheCapacity
-{
-    void* addr = [self pageCache];
-    int* a = reinterpret_cast<int*>(addr);
-    
-    *a = 5;
-}
-
-+ (int)currentPageCacheCapacity
-{
-    void* addr = [self pageCache];
-    int* a = reinterpret_cast<int*>(addr);
-    
-    return (*a);
-}
-
-#ifdef __IPHONE_9_0
-#define Webkit2015
-#else
-#define Webkit2014
-#endif
-
-#ifdef Webkit2014
-namespace WebCore {
-    void* pageCache();
-}
-#endif
-
-
-#ifdef Webkit2015
-namespace WebCore {
-    class PageCache
-    {
-    public:
-        static PageCache& singleton();
-    };
-}
-#endif
-+ (void*)pageCache
-{
-#ifdef Webkit2014
-    return WebCore::pageCache();
-#endif
-#ifdef Webkit2015
-    return &WebCore::PageCache::singleton();
-#endif
-}
 
 @end

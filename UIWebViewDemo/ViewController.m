@@ -14,9 +14,9 @@
 #import "URLDataProvider.h"
 
 @interface ViewController ()<UITextFieldDelegate, UIWebViewDelegate, QuadCurveMenuDelegate, UITableViewDelegate>
-@property(nonatomic, retain)UIWebView* wkview;
-@property(nonatomic, retain)URLDataProvider* dataProvider;
-@property(nonatomic, retain)UITableView* tabView;
+@property(nonatomic, strong)UIWebView* wkview;
+@property(nonatomic, strong)URLDataProvider* dataProvider;
+@property(nonatomic, strong)UITableView* tabView;
 @end
 
 @implementation ViewController
@@ -35,11 +35,11 @@
 - (void)loadView
 {
     CGRect rect = [[UIScreen mainScreen] applicationFrame];
-    UIView* mainView = [[[UIView alloc] initWithFrame:rect] autorelease];
+    UIView* mainView = [[UIView alloc] initWithFrame:rect];
     mainView.backgroundColor = [UIColor scrollViewTexturedBackgroundColor];
     self.view = mainView;
     
-    UIWebView* webView = [[[UIWebView alloc] initWithFrame:rect] autorelease];
+    UIWebView* webView = [[UIWebView alloc] initWithFrame:rect];
     webView.scalesPageToFit = YES;
     webView.delegate = self;
     webView.allowsLinkPreview = YES;
@@ -91,14 +91,6 @@
                                                         highlightedContentImage:nil];
     
     NSArray *menus = [NSArray arrayWithObjects:starMenuItem1, starMenuItem2, starMenuItem3, starMenuItem4, starMenuItem5, starMenuItem6, starMenuItem7,starMenuItem8, nil];
-    [starMenuItem1 release];
-    [starMenuItem2 release];
-    [starMenuItem3 release];
-    [starMenuItem4 release];
-    [starMenuItem5 release];
-    [starMenuItem6 release];
-    [starMenuItem7 release];
-    [starMenuItem8 release];
     
     QuadCurveMenu *menu = [[QuadCurveMenu alloc] initWithFrame:rect menus:menus];
 	
@@ -114,22 +106,20 @@
 	
     menu.delegate = self;
     [self.view addSubview:menu];
-    [menu release];
 }
 
 - (void)dealloc
 {
-    [_wkview release], _wkview = nil;
+    _wkview = nil;
    
     [_tabView removeFromSuperview];
     _tabView.dataSource = nil;
     _tabView.delegate = nil;
     
-    [_tabView release], _tabView = nil;
+    _tabView = nil;
 
-    [_dataProvider release], _dataProvider = nil;
+    _dataProvider = nil;
     
-    [super dealloc];
 }
 
 - (void)viewDidLoad
@@ -207,7 +197,7 @@
 - (void)onBtn_0
 {
     self.tabView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStylePlain];
-    self.dataProvider = [[[URLDataProvider alloc] init] autorelease];
+    self.dataProvider = [[URLDataProvider alloc] init];
     
     _tabView.dataSource = _dataProvider;
     _tabView.delegate = self;

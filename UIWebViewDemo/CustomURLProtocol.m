@@ -9,8 +9,8 @@
 #import "CustomURLProtocol.h"
 
 @interface CustomURLProtocol ()<NSURLConnectionDataDelegate, NSURLConnectionDelegate>
-@property(nonatomic, retain)NSMutableURLRequest* mReuqest;
-@property(nonatomic, retain)NSURLConnection* connection;
+@property(nonatomic, strong)NSMutableURLRequest* mReuqest;
+@property(nonatomic, strong)NSURLConnection* connection;
 @end
 
 @implementation CustomURLProtocol
@@ -35,10 +35,9 @@
 
 -(void)dealloc
 {
-    [_mReuqest release], _mReuqest = nil;
-    [_connection release], _connection = nil;
+    _mReuqest = nil;
+    _connection = nil;
     
-    [super dealloc];
 }
 
 + (NSURLRequest *)canonicalRequestForRequest:(NSURLRequest *)request
@@ -53,7 +52,7 @@
 
 - (void)startLoading
 {
-   self.connection = [[[NSURLConnection alloc] initWithRequest:_mReuqest delegate:self startImmediately:NO] autorelease];
+   self.connection = [[NSURLConnection alloc] initWithRequest:_mReuqest delegate:self startImmediately:NO];
     
     [_connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:[[NSRunLoop currentRunLoop] currentMode]];
     [_connection start];
