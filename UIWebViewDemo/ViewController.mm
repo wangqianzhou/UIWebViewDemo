@@ -236,7 +236,7 @@
     URLViewController* ctl = [[URLViewController alloc] init];
     ctl.delegate = self;
     
-    [self.navigationController pushViewController:ctl animated:YES];
+    return ctl;
 }
 
 - (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit NS_AVAILABLE_IOS(9_0)
