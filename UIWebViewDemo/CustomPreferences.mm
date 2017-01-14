@@ -16,7 +16,6 @@
 {
     [self initUserAgent];
     [self initCustomProtocol];
-//    [self initCacheModel];
 }
 
 + (void)initCustomProtocol
@@ -37,5 +36,8 @@
     ((void(*)(Class cls, SEL sel, int))objc_msgSend)(wvCls, @selector(_setCacheModel:), 2);
 }
 
-
+- (void)_setCacheModel:(NSInteger)anything
+{
+    
+}
 @end

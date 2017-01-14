@@ -7,10 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "QuadCurveMenu.h"
 
 @interface ViewController : UIViewController
-{
-    int m_nFrameLoadCount;
-}
+
 @end
