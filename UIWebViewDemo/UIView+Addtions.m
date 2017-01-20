@@ -109,7 +109,7 @@
 }
 
 - (void)setBottom:(CGFloat)bottom {
-    self.frame = CGRectMake(self.x, bottom - self.y, self.width, self.height);
+    self.frame = CGRectMake(self.x, bottom - self.height, self.width, self.height);
 }
 
 - (CGFloat)bottom {

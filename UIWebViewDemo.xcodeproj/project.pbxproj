@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EE7891A1FA5B900052723 /* CustomURLProtocol.m */; };
+		930EE78A1A1FA5B900052723 /* CustomURLProtocol.mm in Sources */ = {isa = PBXBuildFile; fileRef = 930EE7891A1FA5B900052723 /* CustomURLProtocol.mm */; };
 		9310311617AC9F2D003BA1EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311517AC9F2D003BA1EE /* UIKit.framework */; };
 		9310311817AC9F2D003BA1EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311717AC9F2D003BA1EE /* Foundation.framework */; };
 		9310311A17AC9F2D003BA1EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311917AC9F2D003BA1EE /* CoreGraphics.framework */; };
@@ -47,7 +47,7 @@
 
 /* Begin PBXFileReference section */
 		930EE7881A1FA5B900052723 /* CustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomURLProtocol.h; sourceTree = "<group>"; };
-		930EE7891A1FA5B900052723 /* CustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomURLProtocol.m; sourceTree = "<group>"; };
+		930EE7891A1FA5B900052723 /* CustomURLProtocol.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomURLProtocol.mm; sourceTree = "<group>"; };
 		9310311217AC9F2D003BA1EE /* UIWebViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIWebViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9310311517AC9F2D003BA1EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9310311717AC9F2D003BA1EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -145,7 +145,7 @@
 				9310312D17AC9F2D003BA1EE /* ViewController.h */,
 				935FB2601E20E1E600E3EBD8 /* ViewController.mm */,
 				930EE7881A1FA5B900052723 /* CustomURLProtocol.h */,
-				930EE7891A1FA5B900052723 /* CustomURLProtocol.m */,
+				930EE7891A1FA5B900052723 /* CustomURLProtocol.mm */,
 				9376DE8A1C1054EE00256A7A /* CustomPreferences.h */,
 				9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */,
 				93CAF32F1A1FB4C300D37400 /* URLList.h */,
@@ -216,7 +216,7 @@
 				ORGANIZATIONNAME = uc;
 				TargetAttributes = {
 					9310311117AC9F2D003BA1EE = {
-						DevelopmentTeam = 63WDBES6G3;
+						DevelopmentTeam = 5G7UTXBTG8;
 					};
 				};
 			};
@@ -264,7 +264,7 @@
 				9310312617AC9F2D003BA1EE /* AppDelegate.m in Sources */,
 				93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */,
 				935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */,
-				930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */,
+				930EE78A1A1FA5B900052723 /* CustomURLProtocol.mm in Sources */,
 				93385A601E27B73D001980DC /* URLViewController.m in Sources */,
 				93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */,
 			);
@@ -366,13 +366,13 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 63WDBES6G3;
+				DEVELOPMENT_TEAM = 5G7UTXBTG8;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIWebViewDemo/UIWebViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.professor.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ucweb.iphone.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -386,13 +386,13 @@
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 63WDBES6G3;
+				DEVELOPMENT_TEAM = 5G7UTXBTG8;
 				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIWebViewDemo/UIWebViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.professor.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.ucweb.iphone.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;

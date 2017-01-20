@@ -12,6 +12,8 @@
 #import "CustomButton.h"
 #import "UIView+Addtions.h"
 #import "URLViewController.h"
+#import "CustomURLProtocol.h"
+#import "URLList.h"
 
 #define ENABLE_DBG_LOG 1
 
@@ -25,6 +27,7 @@
 @property(nonatomic, strong)UIWebView* wkview;
 @property(nonatomic, strong)UITableView* tabView;
 @property(nonatomic, assign)NSInteger frameLoadCount;
+@property(nonatomic, assign)NSInteger currentURLIndex;
 @end
 
 @implementation ViewController
@@ -48,16 +51,22 @@
     mainView.backgroundColor = [UIColor grayColor];
     self.view = mainView;
     
-    UIWebView* webView = [[UIWebView alloc] initWithFrame:rect];
+    [self initWebView];
+    
+    
+    [self initAllButtons];
+}
+
+- (void)initWebView
+{
+    UIWebView* webView = [[UIWebView alloc] initWithFrame:self.view.bounds];
     webView.allowsLinkPreview = NO;
     webView.scalesPageToFit = YES;
     webView.delegate = self;
     webView.allowsLinkPreview = YES;
-    [mainView addSubview:webView];
+    [self.view addSubview:webView];
+    [self.view sendSubviewToBack:webView];
     self.wkview = webView;
-    
-    
-    [self initAllButtons];
 }
 
 - (void)initAllButtons
@@ -86,6 +95,21 @@
     btn.centerY = self.view.centerY;
     btn.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:btn];
+    
+    btn = [self buttonWithTitle:@"L"];
+    btn.tag = 4;
+    btn.bottom = self.view.bottom;
+    btn.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.5];
+    [self.view addSubview:btn];
+    
+    btn = [self buttonWithTitle:@"S"];
+    btn.tag = 5;
+    btn.bottom = self.view.bottom;
+    btn.right = self.view.right;
+    btn.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.5];
+    [self.view addSubview:btn];
+    
+    [self updateBtnTitle];
 }
 
 - (CustomButton*)buttonWithTitle:(NSString*)title
@@ -154,6 +178,11 @@
 {
     m_nFrameLoadCount--;
     [self updateLoadingState];
+    
+    if (m_nFrameLoadCount == 0)
+    {
+        [self onLoadFinish];
+    }
 }
 
 - (void)webView:(UIWebView *)webView didFailLoadWithError:(NSError *)error
@@ -165,6 +194,9 @@
 #pragma mark- URLViewControllerDelegate
 - (void)onURLSelect:(NSString*)url
 {
+    [self.wkview removeFromSuperview];
+    [self initWebView];
+    
     [self loadWithURLString:url];
 }
 
@@ -202,12 +234,101 @@
     [_wkview goForward];
 }
 
+- (void)onBtn_4
+{
+    if ([CustomURLProtocol currentMode] == CustomURLProtocolModeRecord)
+    {
+        self.currentURLIndex = 0;
+        [self preloadNext];
+    }
+    else
+    {
+        [self loadNext];
+    }
+}
+
+- (void)onBtn_5
+{
+    CustomURLProtocolMode currentMode = [CustomURLProtocol currentMode];
+    currentMode = (CustomURLProtocolMode)((int)(currentMode + 1) % 3);
+    [CustomURLProtocol setCurrentMode:currentMode];
+    self.currentURLIndex = 0;
+    
+    [self updateBtnTitle];
+}
+
+- (void)updateBtnTitle
+{
+    NSArray<UIButton*>* subviews = [self.view subviews];
+    [subviews enumerateObjectsUsingBlock:^(UIButton * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (obj.tag == 5) {
+            NSString* title = mode2string([CustomURLProtocol currentMode]);
+            [obj setTitle:title forState:UIControlStateNormal];
+            [obj setTitle:title forState:UIControlStateHighlighted];
+        }
+    }];
+}
+
+- (void)loadNext
+{
+    NSInteger totalCount = sizeof(URLList) / sizeof(URLList[0]);
+    if (self.currentURLIndex < totalCount)
+    {
+        NSString* msg = [NSString stringWithFormat:@"Load %zd of %zd", self.currentURLIndex+1, totalCount];
+        [self.view makeToast:msg];
+        
+        [self loadWithURLString:URLList[self.currentURLIndex]];
+        
+        self.currentURLIndex += 1;
+    }
+    else if(self.currentURLIndex == totalCount)
+    {
+        [self loadWithURLString:@"about:blank"];
+        [self.view makeToast:@"FinishLoad"];
+        
+        self.currentURLIndex = 0;
+    }
+}
+
+- (void)preloadNext
+{
+    [CustomURLProtocol setCurrentMode:CustomURLProtocolModeRecord];
+    
+    NSInteger totalCount = sizeof(URLList) / sizeof(URLList[0]);
+    if (self.currentURLIndex < totalCount)
+    {
+        NSString* msg = [NSString stringWithFormat:@"Record %zd of %zd", self.currentURLIndex+1, totalCount];
+        [self.view makeToast:msg];
+        
+        [self loadWithURLString:URLList[self.currentURLIndex]];
+        
+        self.currentURLIndex += 1;
+    }
+    else if(self.currentURLIndex == totalCount)
+    {
+        [self loadWithURLString:@"about:blank"];
+        
+        self.currentURLIndex = 0;
+        [CustomURLProtocol setCurrentMode:CustomURLProtocolModePlaykback];
+        [self updateBtnTitle];
+    }
+}
+
+- (void)onLoadFinish
+{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        if ([CustomURLProtocol currentMode] == CustomURLProtocolModeRecord)
+        {
+            [self preloadNext];
+        }
+    });
+}
 #pragma mark- ButtonActions
 - (void)loadWithURLString:(NSString*)link
 {
     NSURL* url = [NSURL URLWithString:link];
     NSMutableURLRequest* mRequest = [NSMutableURLRequest requestWithURL:url];
-    
+
     [_wkview loadRequest:mRequest];
 }
 

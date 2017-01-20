@@ -8,6 +8,17 @@
 
 #import <Foundation/Foundation.h>
 
+typedef enum : NSUInteger {
+    CustomURLProtocolModeNormal,
+    CustomURLProtocolModeRecord,
+    CustomURLProtocolModePlaykback,
+} CustomURLProtocolMode;
+
+NSString* mode2string(CustomURLProtocolMode mode);
+
 @interface CustomURLProtocol : NSURLProtocol
+
++ (void)setCurrentMode:(CustomURLProtocolMode)currentMode;
++ (CustomURLProtocolMode)currentMode;
 
 @end
