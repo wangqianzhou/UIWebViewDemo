@@ -30,6 +30,7 @@
 		935FB2631E20E58500E3EBD8 /* get_select.js in Resources */ = {isa = PBXBuildFile; fileRef = 935FB2621E20E58500E3EBD8 /* get_select.js */; };
 		9376DE8C1C1054EE00256A7A /* CustomPreferences.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */; };
 		939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 939F9BE81E35A66300E3BFDE /* URLModel.m */; };
+		939F9BEC1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m in Sources */ = {isa = PBXBuildFile; fileRef = 939F9BEB1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m */; };
 		93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CAF32A1A1FB13000D37400 /* UIView+Toast.m */; };
 /* End PBXBuildFile section */
 
@@ -81,6 +82,8 @@
 		9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomPreferences.mm; sourceTree = "<group>"; };
 		939F9BE71E35A66300E3BFDE /* URLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLModel.h; sourceTree = "<group>"; };
 		939F9BE81E35A66300E3BFDE /* URLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLModel.m; sourceTree = "<group>"; };
+		939F9BEA1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+AllObservers.h"; sourceTree = "<group>"; };
+		939F9BEB1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+AllObservers.m"; sourceTree = "<group>"; };
 		93C9E4761950242300516B63 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		93CAF3291A1FB13000D37400 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		93CAF32A1A1FB13000D37400 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
@@ -142,7 +145,6 @@
 		9310311B17AC9F2D003BA1EE /* UIWebViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				93CAF3281A1FB13000D37400 /* Toast */,
 				9310312417AC9F2D003BA1EE /* AppDelegate.h */,
 				9310312517AC9F2D003BA1EE /* AppDelegate.m */,
 				9310312D17AC9F2D003BA1EE /* ViewController.h */,
@@ -160,6 +162,9 @@
 				939F9BE81E35A66300E3BFDE /* URLModel.m */,
 				93385A5E1E27B73D001980DC /* URLViewController.h */,
 				93385A5F1E27B73D001980DC /* URLViewController.m */,
+				939F9BEA1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.h */,
+				939F9BEB1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m */,
+				93CAF3281A1FB13000D37400 /* Toast */,
 				9310311C17AC9F2D003BA1EE /* Supporting Files */,
 			);
 			path = UIWebViewDemo;
@@ -270,6 +275,7 @@
 				93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */,
 				939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */,
 				935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */,
+				939F9BEC1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m in Sources */,
 				930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */,
 				93385A601E27B73D001980DC /* URLViewController.m in Sources */,
 				93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */,
