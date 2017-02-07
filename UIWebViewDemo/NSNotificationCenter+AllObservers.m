@@ -30,6 +30,8 @@ const static void *namesKey = &namesKey;
 	if (!notificationObserver || !notificationName)
 		return;
 	
+//    NSLog(@"Observer: %@, SEL:%s, Name:%@", [notificationObserver class], (char*) sel_getName(notificationSelector), notificationName);
+    
 	NSMutableDictionary *names = objc_getAssociatedObject(self, namesKey);
 	if (!names)
 	{

@@ -18,6 +18,9 @@
 #include <mach/task.h>
 #include <mach/task_info.h>
 #import "NSNotificationCenter+AllObservers.h"
+#include <pthread.h>
+#include <mach/mach.h>
+
 #define ENABLE_DBG_LOG 1
 
 #if ENABLE_DBG_LOG
@@ -117,9 +120,9 @@
 
     
     self.infoLabel = [[UILabel alloc] init];
-    self.infoLabel.width = self.view.width - btn.width * 3;
+    self.infoLabel.width = self.view.width - btn.width * 2 - 10.0;
     self.infoLabel.height = btn.height;
-    self.infoLabel.left = btn.width * 1.5;
+    self.infoLabel.left = btn.width + 5;
     self.infoLabel.textAlignment = NSTextAlignmentCenter;
     self.infoLabel.font = [UIFont systemFontOfSize:14];
     self.infoLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
@@ -275,25 +278,24 @@
 
 - (void)onBtn_6
 {
-    NSSet* observers = [[NSNotificationCenter defaultCenter] observersForNotificationName:@"UIApplicationDidEnterBackgroundNotification"];
-    NSLog(@"Before: \n%@", observers);
+//    NSSet* observers = [[NSNotificationCenter defaultCenter] observersForNotificationName:@"UIApplicationDidEnterBackgroundNotification"];
+//    NSLog(@"Before: \n%@", observers);
+//    
+//    [[NSNotificationCenter defaultCenter] removeObserver:[UIImage class]];
+//    [observers enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
+//        
+//        if ([obj isKindOfClass:NSClassFromString(@"CASuspendNotification")])
+//        {
+//            [[NSNotificationCenter defaultCenter] removeObserver:obj];
+//        }
+//        
+//    }];
     
-    [[NSNotificationCenter defaultCenter] removeObserver:[UIImage class]];
-    [observers enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
-       
-        if (
-//            [obj isKindOfClass:NSClassFromString(@"UIStatusBar")] ||
-//            [obj isKindOfClass:NSClassFromString(@"UIPeripheralHost")] ||
-//            [obj isKindOfClass:NSClassFromString(@"_UIAssetManager")] ||
-//            [obj isKindOfClass:NSClassFromString(@"_UIRemoteKeyboards")] ||
-//            [obj isKindOfClass:NSClassFromString(@"CASuspendNotification")] ||
-            0
-            )
-        {
-            [[NSNotificationCenter defaultCenter] removeObserver:obj];
-        }
-        
-    }];
+    Class cls = NSClassFromString(@"CASuspendNotification");
+    id obj = [[cls alloc] init];
+    
+    SEL sel = @selector(willSuspend:);
+    ((void(*)(id,SEL))objc_msgSend)(obj, sel);
 }
 #pragma mark- ButtonActions
 - (void)loadWithURLString:(NSString*)link
@@ -354,9 +356,38 @@
     return info.virtual_size/1024.0;
 }
 
-- (void)updateProperty
+//Kb，当前应用程序占用的内存
++ (double)curUsedMemory
 {
-    self.infoLabel.text = [NSString stringWithFormat:@"VM Use : %.2f M", [[self class] curUsedMemoryVSize] / 1024.0];
+    struct task_basic_info         info;
+    kern_return_t           rval = 0;
+    mach_port_t             task = mach_task_self();
+    mach_msg_type_number_t  tcnt = TASK_BASIC_INFO_COUNT;
+    task_info_t             tptr = (task_info_t) &info;
+    
+    memset(&info, 0, sizeof(info));
+    
+    rval = task_info(task, TASK_BASIC_INFO, tptr, &tcnt);
+    if (!(rval == KERN_SUCCESS)) return 0;
+    
+    return info.resident_size/1024.0;
 }
 
+- (void)updateProperty
+{
+    self.infoLabel.text = [NSString stringWithFormat:@"VM:%.2fM PM:%.2fM", [[self class] curUsedMemoryVSize] / 1024.0, [[self class] curUsedMemory] / 1024.0];
+}
+
+- (void)addRunloopObserver
+{
+    CFRunLoopObserverRef loopObserver =  CFRunLoopObserverCreateWithHandler
+    (kCFAllocatorDefault, kCFRunLoopBeforeSources|kCFRunLoopBeforeWaiting, true, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+
+        
+    });
+    
+    CFRunLoopRef runLoop = CFRunLoopGetMain();
+    CFStringRef runLoopMode = kCFRunLoopDefaultMode;
+    CFRunLoopAddObserver(runLoop, loopObserver, runLoopMode);
+}
 @end
