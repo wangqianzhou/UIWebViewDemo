@@ -9,6 +9,14 @@
 #import "CustomPreferences.h"
 #import "CustomURLProtocol.h"
 #import <objc/message.h>
+#include "fishhook.h"
+
+static void (*original_x_mem_dealloc)(void* a1, void *a2);
+
+void custom_x_mem_dealloc(void* a1, void *a2)
+{
+    original_x_mem_dealloc(a1, a2);
+}
 
 @implementation CustomPreferences
 
@@ -16,6 +24,7 @@
 {
     [self initUserAgent];
     [self initCustomProtocol];
+    [self hook];
 }
 
 + (void)initCustomProtocol
@@ -39,5 +48,12 @@
 - (void)_setCacheModel:(NSInteger)anything
 {
     
+}
+
++ (void)hook
+{
+    int ret = rebind_symbols((struct rebinding[1]){{"malloc_zone_free", reinterpret_cast<void*>(custom_x_mem_dealloc), reinterpret_cast<void**>(&original_x_mem_dealloc)}}, 1);
+    
+    NSLog(@"Hoo Result : %zd", ret);
 }
 @end

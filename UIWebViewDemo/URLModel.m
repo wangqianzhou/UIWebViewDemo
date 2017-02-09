@@ -13,7 +13,10 @@ static NSString* URLList[] =
     @"http://hao123.com",
     @"http://m.baidu.com",
     @"http://sina.cn/?wm=4007",
-    @"http://www.qstheory.cn/yaowen/2016-12/31/c_1120225207.htm"
+    @"http://www.qstheory.cn/yaowen/2016-12/31/c_1120225207.htm",
+    @"http://image.uc.cn/s/uae/g/16/wangqz/test.html",
+    @"http://image.uc.cn/s/uae/g/16/wangqz/text.html",
+    @"http://image.uc.cn/s/uae/g/16/wangqz/%E4%B8%96%E7%95%8C%E5%9C%B0%E5%9B%BE%E4%B8%AD%E6%96%87%E7%89%88%E5%85%A8%E5%BC%80_10M.png"
 };
 
 @interface URLModel ( )

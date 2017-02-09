@@ -280,8 +280,7 @@
 {
 //    NSSet* observers = [[NSNotificationCenter defaultCenter] observersForNotificationName:@"UIApplicationDidEnterBackgroundNotification"];
 //    NSLog(@"Before: \n%@", observers);
-//    
-//    [[NSNotificationCenter defaultCenter] removeObserver:[UIImage class]];
+//
 //    [observers enumerateObjectsUsingBlock:^(id  _Nonnull obj, BOOL * _Nonnull stop) {
 //        
 //        if ([obj isKindOfClass:NSClassFromString(@"CASuspendNotification")])
@@ -291,12 +290,18 @@
 //        
 //    }];
     
+    [self sendSuspendNotification];
+}
+
+- (void)sendSuspendNotification
+{
     Class cls = NSClassFromString(@"CASuspendNotification");
     id obj = [[cls alloc] init];
     
     SEL sel = @selector(willSuspend:);
     ((void(*)(id,SEL))objc_msgSend)(obj, sel);
 }
+
 #pragma mark- ButtonActions
 - (void)loadWithURLString:(NSString*)link
 {
@@ -378,16 +383,4 @@
     self.infoLabel.text = [NSString stringWithFormat:@"VM:%.2fM PM:%.2fM", [[self class] curUsedMemoryVSize] / 1024.0, [[self class] curUsedMemory] / 1024.0];
 }
 
-- (void)addRunloopObserver
-{
-    CFRunLoopObserverRef loopObserver =  CFRunLoopObserverCreateWithHandler
-    (kCFAllocatorDefault, kCFRunLoopBeforeSources|kCFRunLoopBeforeWaiting, true, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
-
-        
-    });
-    
-    CFRunLoopRef runLoop = CFRunLoopGetMain();
-    CFStringRef runLoopMode = kCFRunLoopDefaultMode;
-    CFRunLoopAddObserver(runLoop, loopObserver, runLoopMode);
-}
 @end
