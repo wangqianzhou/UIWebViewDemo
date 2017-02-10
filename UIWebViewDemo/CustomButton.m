@@ -8,7 +8,7 @@
 
 #import "CustomButton.h"
 
-const int DefaultBtnWidth     = 40;
+const int DefaultBtnWidth     = 60;
 const int DefaultBtnHeight    = 40;
 
 @implementation CustomButton

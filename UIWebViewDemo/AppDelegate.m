@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "ViewController.h"
-#import "CustomPreferences.h"
 
 @implementation AppDelegate
 
@@ -25,7 +24,6 @@
     self.window.rootViewController = navController;
     [self.window makeKeyAndVisible];
 
-    [CustomPreferences initPreferences];
     
     return YES;
 }

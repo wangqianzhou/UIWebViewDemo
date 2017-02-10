@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import <objc/message.h>
-#import "UIView+Toast.h"
 #import "CustomButton.h"
 #import "UIView+Addtions.h"
 #import "URLViewController.h"
@@ -72,61 +71,54 @@
 
 - (void)initAllButtons
 {
+    self.infoLabel = [[UILabel alloc] init];
+    self.infoLabel.width = self.view.width;
+    self.infoLabel.height = 25;
+    self.infoLabel.textAlignment = NSTextAlignmentCenter;
+    self.infoLabel.font = [UIFont systemFontOfSize:12];
+    self.infoLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.8];
+    [self.view addSubview:self.infoLabel];
+    
     //打开
-    CustomButton* btn = [self buttonWithTitle:@"O"];
+    CustomButton* btn = [self buttonWithTitle:@"Open"];
+    btn.top = self.infoLabel.bottom + 10;
     btn.tag = 0;
     btn.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:btn];
 
-    btn = [self buttonWithTitle:@"R"];
+    btn = [self buttonWithTitle:@"Reload"];
     btn.tag = 1;
     btn.right = self.view.right;
+    btn.top = self.infoLabel.bottom + 10;    
     btn.backgroundColor = [[UIColor cyanColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:btn];
-    
-    btn = [self buttonWithTitle:@"<"];
-    btn.tag = 2;
-    btn.centerY = self.view.centerY;
-    btn.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.5];
-    [self.view addSubview:btn];
-    
-    btn = [self buttonWithTitle:@">"];
-    btn.tag = 3;
-    btn.right = self.view.right;
-    btn.centerY = self.view.centerY;
-    btn.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.5];
-    [self.view addSubview:btn];
 
-    btn = [self buttonWithTitle:@"F"];
-    btn.tag = 4;
+    btn = [self buttonWithTitle:@"Foreground"];
+    btn.tag = 2;
+    btn.width = btn.width * 1.5;
+    btn.titleLabel.font = [UIFont systemFontOfSize:12];
     btn.left = self.view.left;
     btn.bottom = self.view.bottom;
     btn.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:btn];
     
-    btn = [self buttonWithTitle:@"B"];
-    btn.tag = 5;
+    btn = [self buttonWithTitle:@"Background"];
+    btn.tag = 3;
+    btn.width = btn.width * 1.5;
+    btn.titleLabel.font = [UIFont systemFontOfSize:12];
     btn.right = self.view.right;
     btn.bottom = self.view.bottom;
     btn.backgroundColor = [[UIColor orangeColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:btn];
 
     btn = [self buttonWithTitle:@"T"];
-    btn.tag = 6;
+    btn.tag = 4;
     btn.centerX = self.view.centerX;
     btn.bottom = self.view.bottom;
     btn.backgroundColor = [[UIColor cyanColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:btn];
 
-    
-    self.infoLabel = [[UILabel alloc] init];
-    self.infoLabel.width = self.view.width - btn.width * 2 - 10.0;
-    self.infoLabel.height = btn.height;
-    self.infoLabel.left = btn.width + 5;
-    self.infoLabel.textAlignment = NSTextAlignmentCenter;
-    self.infoLabel.font = [UIFont systemFontOfSize:14];
-    self.infoLabel.backgroundColor = [[UIColor grayColor] colorWithAlphaComponent:0.5];
-    [self.view addSubview:self.infoLabel];
+
 }
 
 - (CustomButton*)buttonWithTitle:(NSString*)title
@@ -240,43 +232,17 @@
 
 - (void)onBtn_2
 {
-    [_wkview goBack];
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationWillEnterForegroundNotification object:nil];
 }
 
 - (void)onBtn_3
-{   
-    [_wkview goForward];
+{
+    [[NSNotificationCenter defaultCenter] postNotificationName:UIApplicationDidEnterBackgroundNotification object:nil];
 }
+
+
 
 - (void)onBtn_4
-{
-    NSArray<NSString*>* notifications = @[
-                                          @"UIApplicationWillEnterForegroundNotification",
-                                          ];
-    
-    [notifications enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        [[NSNotificationCenter defaultCenter] postNotificationName:obj object:nil];
-    }];
-}
-
-- (void)onBtn_5
-{
-    NSArray<NSString*>* notifications = @[
-                                          @"UIApplicationDidReceiveMemoryWarningNotification",
-                                          @"UIApplicationDidReceiveMemoryWarningNotification",
-                                          @"UIApplicationDidEnterBackgroundNotification"
-                                          ];
-    
-    @autoreleasepool {
-        [notifications enumerateObjectsUsingBlock:^(NSString * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [[NSNotificationCenter defaultCenter] postNotificationName:obj object:nil];
-        }];
-    }
-}
-
-
-
-- (void)onBtn_6
 {
 //    NSSet* observers = [[NSNotificationCenter defaultCenter] observersForNotificationName:@"UIApplicationDidEnterBackgroundNotification"];
 //    NSLog(@"Before: \n%@", observers);
@@ -380,7 +346,7 @@
 
 - (void)updateProperty
 {
-    self.infoLabel.text = [NSString stringWithFormat:@"VM:%.2fM PM:%.2fM", [[self class] curUsedMemoryVSize] / 1024.0, [[self class] curUsedMemory] / 1024.0];
+    self.infoLabel.text = [NSString stringWithFormat:@"virtual_size:%.2fmb   resident_size:%.2fmb", [[self class] curUsedMemoryVSize] / 1024.0, [[self class] curUsedMemory] / 1024.0];
 }
 
 @end

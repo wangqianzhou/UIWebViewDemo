@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EE7891A1FA5B900052723 /* CustomURLProtocol.m */; };
 		9310311617AC9F2D003BA1EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311517AC9F2D003BA1EE /* UIKit.framework */; };
 		9310311817AC9F2D003BA1EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311717AC9F2D003BA1EE /* Foundation.framework */; };
 		9310311A17AC9F2D003BA1EE /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311917AC9F2D003BA1EE /* CoreGraphics.framework */; };
@@ -17,7 +16,6 @@
 		9310312817AC9F2D003BA1EE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312717AC9F2D003BA1EE /* Default.png */; };
 		9310312A17AC9F2D003BA1EE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312917AC9F2D003BA1EE /* Default@2x.png */; };
 		9310312C17AC9F2D003BA1EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312B17AC9F2D003BA1EE /* Default-568h@2x.png */; };
-		9324DC421E4C0DA10031699F /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = 9324DC401E4C0DA10031699F /* fishhook.c */; };
 		93385A5A1E279597001980DC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A591E279597001980DC /* CustomButton.m */; };
 		93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5C1E27AB21001980DC /* UIView+Addtions.m */; };
 		93385A601E27B73D001980DC /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5F1E27B73D001980DC /* URLViewController.m */; };
@@ -29,10 +27,8 @@
 		935FB25C1E20DBBB00E3EBD8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935FB25B1E20DBBB00E3EBD8 /* MobileCoreServices.framework */; };
 		935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 935FB2601E20E1E600E3EBD8 /* ViewController.mm */; };
 		935FB2631E20E58500E3EBD8 /* get_select.js in Resources */ = {isa = PBXBuildFile; fileRef = 935FB2621E20E58500E3EBD8 /* get_select.js */; };
-		9376DE8C1C1054EE00256A7A /* CustomPreferences.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */; };
 		939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 939F9BE81E35A66300E3BFDE /* URLModel.m */; };
 		939F9BEC1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m in Sources */ = {isa = PBXBuildFile; fileRef = 939F9BEB1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m */; };
-		93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CAF32A1A1FB13000D37400 /* UIView+Toast.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -49,8 +45,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		930EE7881A1FA5B900052723 /* CustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomURLProtocol.h; sourceTree = "<group>"; };
-		930EE7891A1FA5B900052723 /* CustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomURLProtocol.m; sourceTree = "<group>"; };
 		9310311217AC9F2D003BA1EE /* UIWebViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIWebViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9310311517AC9F2D003BA1EE /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		9310311717AC9F2D003BA1EE /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -65,8 +59,6 @@
 		9310312917AC9F2D003BA1EE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		9310312B17AC9F2D003BA1EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9310312D17AC9F2D003BA1EE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		9324DC401E4C0DA10031699F /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
-		9324DC411E4C0DA10031699F /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
 		93385A581E279597001980DC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		93385A591E279597001980DC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		93385A5B1E27AB21001980DC /* UIView+Addtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addtions.h"; sourceTree = "<group>"; };
@@ -81,15 +73,11 @@
 		935FB25B1E20DBBB00E3EBD8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		935FB2601E20E1E600E3EBD8 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		935FB2621E20E58500E3EBD8 /* get_select.js */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.javascript; path = get_select.js; sourceTree = "<group>"; };
-		9376DE8A1C1054EE00256A7A /* CustomPreferences.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomPreferences.h; sourceTree = "<group>"; };
-		9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomPreferences.mm; sourceTree = "<group>"; };
 		939F9BE71E35A66300E3BFDE /* URLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLModel.h; sourceTree = "<group>"; };
 		939F9BE81E35A66300E3BFDE /* URLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLModel.m; sourceTree = "<group>"; };
 		939F9BEA1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+AllObservers.h"; sourceTree = "<group>"; };
 		939F9BEB1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+AllObservers.m"; sourceTree = "<group>"; };
 		93C9E4761950242300516B63 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
-		93CAF3291A1FB13000D37400 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
-		93CAF32A1A1FB13000D37400 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		93CAF32F1A1FB4C300D37400 /* URLList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLList.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -148,15 +136,10 @@
 		9310311B17AC9F2D003BA1EE /* UIWebViewDemo */ = {
 			isa = PBXGroup;
 			children = (
-				9324DC3F1E4C0DA10031699F /* fishhook */,
 				9310312417AC9F2D003BA1EE /* AppDelegate.h */,
 				9310312517AC9F2D003BA1EE /* AppDelegate.m */,
 				9310312D17AC9F2D003BA1EE /* ViewController.h */,
 				935FB2601E20E1E600E3EBD8 /* ViewController.mm */,
-				930EE7881A1FA5B900052723 /* CustomURLProtocol.h */,
-				930EE7891A1FA5B900052723 /* CustomURLProtocol.m */,
-				9376DE8A1C1054EE00256A7A /* CustomPreferences.h */,
-				9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */,
 				93CAF32F1A1FB4C300D37400 /* URLList.h */,
 				93385A5B1E27AB21001980DC /* UIView+Addtions.h */,
 				93385A5C1E27AB21001980DC /* UIView+Addtions.m */,
@@ -168,7 +151,6 @@
 				93385A5F1E27B73D001980DC /* URLViewController.m */,
 				939F9BEA1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.h */,
 				939F9BEB1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m */,
-				93CAF3281A1FB13000D37400 /* Toast */,
 				9310311C17AC9F2D003BA1EE /* Supporting Files */,
 			);
 			path = UIWebViewDemo;
@@ -188,24 +170,6 @@
 				9310312B17AC9F2D003BA1EE /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		9324DC3F1E4C0DA10031699F /* fishhook */ = {
-			isa = PBXGroup;
-			children = (
-				9324DC401E4C0DA10031699F /* fishhook.c */,
-				9324DC411E4C0DA10031699F /* fishhook.h */,
-			);
-			path = fishhook;
-			sourceTree = "<group>";
-		};
-		93CAF3281A1FB13000D37400 /* Toast */ = {
-			isa = PBXGroup;
-			children = (
-				93CAF3291A1FB13000D37400 /* UIView+Toast.h */,
-				93CAF32A1A1FB13000D37400 /* UIView+Toast.m */,
-			);
-			path = Toast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -283,16 +247,12 @@
 			files = (
 				93385A5A1E279597001980DC /* CustomButton.m in Sources */,
 				9310312217AC9F2D003BA1EE /* main.m in Sources */,
-				9376DE8C1C1054EE00256A7A /* CustomPreferences.mm in Sources */,
 				9310312617AC9F2D003BA1EE /* AppDelegate.m in Sources */,
 				93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */,
 				939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */,
 				935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */,
 				939F9BEC1E35D8BC00E3BFDE /* NSNotificationCenter+AllObservers.m in Sources */,
-				930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */,
 				93385A601E27B73D001980DC /* URLViewController.m in Sources */,
-				9324DC421E4C0DA10031699F /* fishhook.c in Sources */,
-				93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
