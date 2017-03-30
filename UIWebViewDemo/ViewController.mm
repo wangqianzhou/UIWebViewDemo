@@ -12,6 +12,7 @@
 #import "CustomButton.h"
 #import "UIView+Addtions.h"
 #import "URLViewController.h"
+#import <sys/kdebug_signpost.h>
 
 #define ENABLE_DBG_LOG 1
 
@@ -48,7 +49,12 @@
     mainView.backgroundColor = [UIColor grayColor];
     self.view = mainView;
     
+
     UIWebView* webView = [[UIWebView alloc] initWithFrame:rect];
+    webView.dataDetectorTypes = UIDataDetectorTypeNone;
+
+    
+    
     webView.allowsLinkPreview = NO;
     webView.scalesPageToFit = YES;
     webView.delegate = self;

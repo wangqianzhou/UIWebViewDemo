@@ -84,7 +84,6 @@
 		93C9E4761950242300516B63 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		93CAF3291A1FB13000D37400 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		93CAF32A1A1FB13000D37400 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
-		93CAF32F1A1FB4C300D37400 /* URLList.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = URLList.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,7 +150,6 @@
 				930EE7891A1FA5B900052723 /* CustomURLProtocol.m */,
 				9376DE8A1C1054EE00256A7A /* CustomPreferences.h */,
 				9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */,
-				93CAF32F1A1FB4C300D37400 /* URLList.h */,
 				93385A5B1E27AB21001980DC /* UIView+Addtions.h */,
 				93385A5C1E27AB21001980DC /* UIView+Addtions.m */,
 				93385A581E279597001980DC /* CustomButton.h */,
