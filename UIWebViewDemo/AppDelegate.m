@@ -69,7 +69,7 @@
     //init sdk enviroment
     [WXSDKEngine initSDKEnvironment];
     //set the log level
-    [WXLog setLogLevel: WXLogLevelAll];
+    [WXLog setLogLevel: WXLogLevelOff];
 }
 
 @end

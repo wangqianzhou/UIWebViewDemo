@@ -12,7 +12,7 @@
 #import "CustomButton.h"
 #import "UIView+Addtions.h"
 #import "URLViewController.h"
-#import <sys/kdebug_signpost.h>
+#import "BannerViewController.h"
 
 #define ENABLE_DBG_LOG 1
 
@@ -24,8 +24,11 @@
 
 @interface ViewController ()<UIWebViewDelegate, URLViewControllerDelegate, UIViewControllerPreviewingDelegate>
 @property(nonatomic, strong)UIWebView* wkview;
-@property(nonatomic, strong)UITableView* tabView;
 @property(nonatomic, assign)NSInteger frameLoadCount;
+@property(nonatomic, assign)UIView* browserview;
+@property(nonatomic, strong)BannerViewController* topbanner;
+@property(nonatomic, strong)BannerViewController* bottombanner;
+@property(nonatomic, strong)BannerViewController* fixedbanner;
 @end
 
 @implementation ViewController
@@ -52,16 +55,26 @@
 
     UIWebView* webView = [[UIWebView alloc] initWithFrame:rect];
     webView.dataDetectorTypes = UIDataDetectorTypeNone;
-
-    
-    
     webView.allowsLinkPreview = NO;
     webView.scalesPageToFit = YES;
     webView.delegate = self;
     webView.allowsLinkPreview = YES;
     [mainView addSubview:webView];
     self.wkview = webView;
+
+    [webView.scrollView.subviews enumerateObjectsUsingBlock:^(__kindof UIView * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if (![obj isKindOfClass:[UIScrollView class]])
+        {
+            self.browserview = obj;
+            *stop = YES;
+        }
+    }];
     
+    self.topbanner = [[BannerViewController alloc] init];
+    self.bottombanner = [[BannerViewController alloc] init];
+    self.fixedbanner = [[BannerViewController alloc] init];
+    
+    [self registerAsObserver];
     
     [self initAllButtons];
 }
@@ -106,6 +119,7 @@
 
 - (void)dealloc
 {
+    [self unregisterAsObserver];
     _wkview = nil;    
 }
 
@@ -215,6 +229,8 @@
     NSMutableURLRequest* mRequest = [NSMutableURLRequest requestWithURL:url];
     
     [_wkview loadRequest:mRequest];
+    
+    [self clearBanner];
 }
 
 #pragma mark-
@@ -225,6 +241,7 @@
     if (m_nFrameLoadCount == 0)
     {
         borderClr = [UIColor clearColor];
+        [self onFinishLoad];
     }
     else
     {
@@ -234,6 +251,43 @@
     _wkview.layer.borderWidth = 2;
     _wkview.layer.borderColor = [borderClr CGColor];
     
+}
+
+- (void)onFinishLoad
+{
+    [self updateBanner];
+}
+
+- (void)clearBanner
+{
+    [_topbanner.view removeFromSuperview];
+    [_bottombanner.view removeFromSuperview];
+    [_fixedbanner.view removeFromSuperview];
+}
+
+- (void)updateBanner
+{
+    const CGFloat banner_height = 100;
+    
+    CGRect browserframe = _browserview.frame;
+    browserframe.origin.y = banner_height;
+    
+    _browserview.frame = browserframe;
+    
+    
+    _topbanner.view.frame = CGRectMake(0, -banner_height, browserframe.size.width, banner_height);
+    _topbanner.view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.3];
+    [_browserview addSubview:_topbanner.view];
+    
+    _bottombanner.view.frame = CGRectMake(0, browserframe.size.height, browserframe.size.width, banner_height);
+    _bottombanner.view.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.3];
+    _bottombanner.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
+    [_browserview addSubview:_bottombanner.view];
+    
+    
+    _fixedbanner.view.frame = CGRectMake(0, _wkview.height-banner_height*2, _wkview.width, banner_height);
+    _fixedbanner.view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3];
+    [_wkview addSubview:_fixedbanner.view];
 }
 
 #pragma mark- UIViewControllerPreviewingDelegate
@@ -250,4 +304,77 @@
     [self.navigationController pushViewController:viewControllerToCommit animated:NO];
 }
 
+#pragma mark- KVO
+- (void)registerAsObserver
+{
+    [_wkview.scrollView addObserver:self
+                         forKeyPath:@"contentOffset"
+                            options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+                            context:nil];
+    
+    [_wkview.scrollView addObserver:self
+                         forKeyPath:@"contentSize"
+                            options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+                            context:nil];
+}
+
+- (void)unregisterAsObserver
+{
+    [_wkview.scrollView removeObserver:self
+                            forKeyPath:@"contentOffset"
+                               context:nil];
+    
+    [_wkview.scrollView removeObserver:self
+                            forKeyPath:@"contentSize"
+                               context:nil];
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    
+    if (object == _wkview.scrollView)
+    {
+        if ([keyPath isEqualToString:@"contentOffset"])
+        {
+//            NSLog(@"ContentOffset:%@; ContentSize:%@", NSStringFromCGPoint(_wkview.scrollView.contentOffset), NSStringFromCGSize(_wkview.scrollView.contentSize));
+        }
+        else if ([keyPath isEqualToString:@"contentSize"])
+        {
+            CGSize newContentSize = [[change objectForKey:NSKeyValueChangeNewKey] CGSizeValue];
+            CGFloat targetHeight = _browserview.height;
+            if (_topbanner.view.superview)
+            {
+                targetHeight += _topbanner.view.height;
+            }
+            
+            if (_bottombanner.view.superview)
+            {
+                targetHeight += _bottombanner.view.height;
+            }
+            
+            if (fabs(newContentSize.height - targetHeight) > FLT_EPSILON)
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    CGSize contentSizeWithBottomBanner = CGSizeMake(newContentSize.width, targetHeight);
+                    _wkview.scrollView.contentSize = contentSizeWithBottomBanner;
+                    
+                    NSLog(@"ContentSize: %@ -> %@", NSStringFromCGSize(newContentSize), NSStringFromCGSize(contentSizeWithBottomBanner));
+                });
+            }
+            
+//            NSLog(@"%@", NSStringFromCGSize(newContentSize));
+//            NSLog(@"%@", [NSString stringWithFormat:@"ContentSizeChange:%@ -> %@", change[@"old"], change[@"new"]]);
+        }
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
+    }
+}
 @end

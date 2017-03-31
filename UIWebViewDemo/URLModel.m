@@ -14,7 +14,7 @@ static NSString* URLList[] =
     @"http://m.baidu.com",
     @"http://sina.cn/?wm=4007",
     @"http://www.qstheory.cn/yaowen/2016-12/31/c_1120225207.htm",
-    @"http://output.jsbin.com/paxunetuqo"
+    @"https://info.3g.qq.com/g/channel_home.htm?i_f=766&f_aid_ext=nav&chId=sports_nch&sid=&&icfa=home_touch&f_pid=135&iarea=239#/tab/105000000_tpc_tab?_k=13e6z9"
 };
 
 @interface URLModel ( )
