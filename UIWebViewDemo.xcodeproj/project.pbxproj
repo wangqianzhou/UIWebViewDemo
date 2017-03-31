@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		119B8A255F1FAB10EC41307D /* libPods-UIWebViewDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0C2B041FF0D8F2A9FA86CA66 /* libPods-UIWebViewDemo.a */; };
 		930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */ = {isa = PBXBuildFile; fileRef = 930EE7891A1FA5B900052723 /* CustomURLProtocol.m */; };
 		9310311617AC9F2D003BA1EE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311517AC9F2D003BA1EE /* UIKit.framework */; };
 		9310311817AC9F2D003BA1EE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9310311717AC9F2D003BA1EE /* Foundation.framework */; };
@@ -47,6 +48,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		0C2B041FF0D8F2A9FA86CA66 /* libPods-UIWebViewDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UIWebViewDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C42C37B1DDFB1D3694E39B9 /* Pods-UIWebViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIWebViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 		930EE7881A1FA5B900052723 /* CustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomURLProtocol.h; sourceTree = "<group>"; };
 		930EE7891A1FA5B900052723 /* CustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomURLProtocol.m; sourceTree = "<group>"; };
 		9310311217AC9F2D003BA1EE /* UIWebViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIWebViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +87,7 @@
 		93C9E4761950242300516B63 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		93CAF3291A1FB13000D37400 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		93CAF32A1A1FB13000D37400 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		E40AB13F22084C3F339366EC /* Pods-UIWebViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIWebViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,18 +103,29 @@
 				9310311617AC9F2D003BA1EE /* UIKit.framework in Frameworks */,
 				9310311817AC9F2D003BA1EE /* Foundation.framework in Frameworks */,
 				9310311A17AC9F2D003BA1EE /* CoreGraphics.framework in Frameworks */,
+				119B8A255F1FAB10EC41307D /* libPods-UIWebViewDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		33B1D28B25D7F68DDE616FFC /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E40AB13F22084C3F339366EC /* Pods-UIWebViewDemo.debug.xcconfig */,
+				5C42C37B1DDFB1D3694E39B9 /* Pods-UIWebViewDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9310310917AC9F2D003BA1EE = {
 			isa = PBXGroup;
 			children = (
 				9310311B17AC9F2D003BA1EE /* UIWebViewDemo */,
 				9310311417AC9F2D003BA1EE /* Frameworks */,
 				9310311317AC9F2D003BA1EE /* Products */,
+				33B1D28B25D7F68DDE616FFC /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +149,7 @@
 				9310311717AC9F2D003BA1EE /* Foundation.framework */,
 				9310311917AC9F2D003BA1EE /* CoreGraphics.framework */,
 				93C9E4761950242300516B63 /* NotificationCenter.framework */,
+				0C2B041FF0D8F2A9FA86CA66 /* libPods-UIWebViewDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,10 +211,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9310313517AC9F2D003BA1EE /* Build configuration list for PBXNativeTarget "UIWebViewDemo" */;
 			buildPhases = (
+				48BB69FEC6DD343041867426 /* [CP] Check Pods Manifest.lock */,
 				9310310E17AC9F2D003BA1EE /* Sources */,
 				9310310F17AC9F2D003BA1EE /* Frameworks */,
 				9310311017AC9F2D003BA1EE /* Resources */,
 				93C9E4481950227300516B63 /* Embed App Extensions */,
+				0A4368B93F63DE46DA5852AB /* [CP] Embed Pods Frameworks */,
+				4C2EE59A345F06DE40F6F236 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -255,6 +274,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0A4368B93F63DE46DA5852AB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		48BB69FEC6DD343041867426 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4C2EE59A345F06DE40F6F236 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9310310E17AC9F2D003BA1EE /* Sources */ = {
@@ -365,13 +432,14 @@
 		};
 		9310313617AC9F2D003BA1EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E40AB13F22084C3F339366EC /* Pods-UIWebViewDemo.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 63WDBES6G3;
-				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIWebViewDemo/UIWebViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";
@@ -385,13 +453,14 @@
 		};
 		9310313717AC9F2D003BA1EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C42C37B1DDFB1D3694E39B9 /* Pods-UIWebViewDemo.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 63WDBES6G3;
-				FRAMEWORK_SEARCH_PATHS = "$(SDKROOT)/System/Library/PrivateFrameworks";
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "UIWebViewDemo/UIWebViewDemo-Prefix.pch";
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";

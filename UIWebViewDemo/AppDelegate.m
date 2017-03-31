@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "ViewController.h"
 #import "CustomPreferences.h"
+#import "WeexSDK.h"
 
 @implementation AppDelegate
 
@@ -26,6 +27,8 @@
     [self.window makeKeyAndVisible];
 
     [CustomPreferences initPreferences];
+    
+    [self initWeexEnv];
     
     return YES;
 }
@@ -55,6 +58,18 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (void)initWeexEnv
+{
+    //business configuration
+    [WXAppConfiguration setAppGroup:@"AliApp"];
+    [WXAppConfiguration setAppName:@"WeexDemo"];
+    [WXAppConfiguration setAppVersion:@"1.0.0"];
+    //init sdk enviroment
+    [WXSDKEngine initSDKEnvironment];
+    //set the log level
+    [WXLog setLogLevel: WXLogLevelAll];
 }
 
 @end
