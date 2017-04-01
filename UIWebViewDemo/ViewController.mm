@@ -8,7 +8,6 @@
 
 #import "ViewController.h"
 #import <objc/message.h>
-#import "UIView+Toast.h"
 #import "CustomButton.h"
 #import "UIView+Addtions.h"
 #import "URLViewController.h"
@@ -161,6 +160,8 @@
 #pragma mark- UIWebViewDelegate
 - (BOOL)webView:(UIWebView *)webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType
 {
+    [self clearBanner];
+    
     return YES;
 }
 
@@ -263,6 +264,9 @@
     [_topbanner.view removeFromSuperview];
     [_bottombanner.view removeFromSuperview];
     [_fixedbanner.view removeFromSuperview];
+    
+    _browserview.y = 0;
+    _wkview.scrollView.contentSize = CGSizeMake(_browserview.width, _browserview.height);
 }
 
 #define SetBorderColor(view, color) \
@@ -271,6 +275,11 @@ view.layer.borderWidth = 1.0f;
 - (void)updateBanner
 {
     const CGFloat banner_height = 100;
+    
+    if ( ! [self shouldDisplayBanner] )
+    {
+        return ;
+    }
     
     CGRect browserframe = _browserview.frame;
     browserframe.origin.y = banner_height;
@@ -315,11 +324,6 @@ view.layer.borderWidth = 1.0f;
 - (void)registerAsObserver
 {
     [_wkview.scrollView addObserver:self
-                         forKeyPath:@"contentOffset"
-                            options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
-                            context:nil];
-    
-    [_wkview.scrollView addObserver:self
                          forKeyPath:@"contentSize"
                             options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
                             context:nil];
@@ -328,13 +332,8 @@ view.layer.borderWidth = 1.0f;
 - (void)unregisterAsObserver
 {
     [_wkview.scrollView removeObserver:self
-                            forKeyPath:@"contentOffset"
-                               context:nil];
-    
-    [_wkview.scrollView removeObserver:self
                             forKeyPath:@"contentSize"
                                context:nil];
-    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -344,12 +343,10 @@ view.layer.borderWidth = 1.0f;
     
     if (object == _wkview.scrollView)
     {
-        if ([keyPath isEqualToString:@"contentOffset"])
+        if ([keyPath isEqualToString:@"contentSize"])
         {
-//            NSLog(@"ContentOffset:%@; ContentSize:%@", NSStringFromCGPoint(_wkview.scrollView.contentOffset), NSStringFromCGSize(_wkview.scrollView.contentSize));
-        }
-        else if ([keyPath isEqualToString:@"contentSize"])
-        {
+            [self updateBannerOnContentSizeChange];
+            
             CGSize newContentSize = [[change objectForKey:NSKeyValueChangeNewKey] CGSizeValue];
             CGFloat targetHeight = _browserview.height;
             if (_topbanner.view.superview)
@@ -371,9 +368,6 @@ view.layer.borderWidth = 1.0f;
                     NSLog(@"ContentSize: %@ -> %@", NSStringFromCGSize(newContentSize), NSStringFromCGSize(contentSizeWithBottomBanner));
                 });
             }
-            
-//            NSLog(@"%@", NSStringFromCGSize(newContentSize));
-//            NSLog(@"%@", [NSString stringWithFormat:@"ContentSizeChange:%@ -> %@", change[@"old"], change[@"new"]]);
         }
     }
     else
@@ -382,6 +376,35 @@ view.layer.borderWidth = 1.0f;
                              ofObject:object
                                change:change
                               context:context];
+    }
+}
+
+#pragma mark- ContentSize
+- (BOOL)shouldUpdateBanner
+{
+    return [self isBannerDisplaying] != [self shouldDisplayBanner];
+}
+
+- (BOOL)isBannerDisplaying
+{
+     return _topbanner.view.superview && _bottombanner.view.superview && _fixedbanner.view.superview;
+}
+
+- (BOOL)shouldDisplayBanner
+{
+    return fabs(_browserview.height - _wkview.scrollView.height) > 10;
+
+}
+
+- (void)updateBannerOnContentSizeChange
+{
+    if ( [self isBannerDisplaying] && ![self shouldDisplayBanner])
+    {
+        [self clearBanner];
+    }
+    else if (![self isBannerDisplaying] && [self shouldDisplayBanner])
+    {
+        [self updateBanner];
     }
 }
 @end
