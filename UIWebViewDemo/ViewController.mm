@@ -13,7 +13,7 @@
 #import "URLViewController.h"
 #import "BannerViewController.h"
 
-#define ENABLE_DBG_LOG 1
+#define ENABLE_DBG_LOG 0
 
 #if ENABLE_DBG_LOG
 #define DBG_LOG(frmt, ...) NSLog((frmt), ##__VA_ARGS__)
@@ -269,9 +269,7 @@
     _wkview.scrollView.contentSize = CGSizeMake(_browserview.width, _browserview.height);
 }
 
-#define SetBorderColor(view, color) \
-view.layer.borderColor = [color CGColor];\
-view.layer.borderWidth = 1.0f;
+
 - (void)updateBanner
 {
     const CGFloat banner_height = 100;
@@ -285,23 +283,25 @@ view.layer.borderWidth = 1.0f;
     browserframe.origin.y = banner_height;
     
     _browserview.frame = browserframe;
-    
+
+    NSString* sourcePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"weex_bundle/app.weex.js"];
+    NSString* source =  [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
+
     
     _topbanner.view.frame = CGRectMake(0, -banner_height, browserframe.size.width, banner_height);
     SetBorderColor(_topbanner.view, [UIColor blueColor])
     [_browserview addSubview:_topbanner.view];
-    
-    _topbanner.url = [NSURL URLWithString:@"http://dotwe.org/raw/dist/931cc3b3d41d40f971bba19c905ef787.bundle.wx"];
+    _topbanner.source = source;
     
     _bottombanner.view.frame = CGRectMake(0, browserframe.size.height, browserframe.size.width, banner_height);
     SetBorderColor(_bottombanner.view, [UIColor blueColor])
     _bottombanner.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [_browserview addSubview:_bottombanner.view];
-    _bottombanner.url = [NSURL URLWithString:@"http://dotwe.org/raw/dist/931cc3b3d41d40f971bba19c905ef787.bundle.wx"];
+    _bottombanner.source = source;
     
     _fixedbanner.view.frame = CGRectMake(0, _wkview.height-banner_height*2, _wkview.width, banner_height);
     SetBorderColor(_fixedbanner.view, [UIColor blueColor])
-    _fixedbanner.url = [NSURL URLWithString:@"http://dotwe.org/raw/dist/931cc3b3d41d40f971bba19c905ef787.bundle.wx"];
+    _fixedbanner.source = source;
     
     [_wkview addSubview:_fixedbanner.view];
 }
@@ -324,6 +324,11 @@ view.layer.borderWidth = 1.0f;
 - (void)registerAsObserver
 {
     [_wkview.scrollView addObserver:self
+                         forKeyPath:@"contentOffset"
+                            options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
+                            context:nil];
+    
+    [_wkview.scrollView addObserver:self
                          forKeyPath:@"contentSize"
                             options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionOld)
                             context:nil];
@@ -332,8 +337,13 @@ view.layer.borderWidth = 1.0f;
 - (void)unregisterAsObserver
 {
     [_wkview.scrollView removeObserver:self
+                            forKeyPath:@"contentOffset"
+                               context:nil];
+    
+    [_wkview.scrollView removeObserver:self
                             forKeyPath:@"contentSize"
                                context:nil];
+    
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath
@@ -345,8 +355,6 @@ view.layer.borderWidth = 1.0f;
     {
         if ([keyPath isEqualToString:@"contentSize"])
         {
-            [self updateBannerOnContentSizeChange];
-            
             CGSize newContentSize = [[change objectForKey:NSKeyValueChangeNewKey] CGSizeValue];
             CGFloat targetHeight = _browserview.height;
             if (_topbanner.view.superview)
@@ -365,7 +373,7 @@ view.layer.borderWidth = 1.0f;
                     CGSize contentSizeWithBottomBanner = CGSizeMake(newContentSize.width, targetHeight);
                     _wkview.scrollView.contentSize = contentSizeWithBottomBanner;
                     
-                    NSLog(@"ContentSize: %@ -> %@", NSStringFromCGSize(newContentSize), NSStringFromCGSize(contentSizeWithBottomBanner));
+                    DBG_LOG(@"ContentSize: %@ -> %@", NSStringFromCGSize(newContentSize), NSStringFromCGSize(contentSizeWithBottomBanner));
                 });
             }
         }

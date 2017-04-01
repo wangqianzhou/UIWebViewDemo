@@ -86,4 +86,9 @@ var weexConfig = getBaseConfig()
 weexConfig.output.filename = '[name].weex.js'
 weexConfig.module.loaders[1].loaders.push('weex')
 
-module.exports = [webConfig, weexConfig]
+var ios_app_bundle = getBaseConfig()
+ios_app_bundle.output.path = '../UIWebViewDemo/weex_bundle'
+ios_app_bundle.output.filename = '[name].weex.js'
+ios_app_bundle.module.loaders[1].loaders.push('weex')
+
+module.exports = [webConfig, weexConfig, ios_app_bundle]

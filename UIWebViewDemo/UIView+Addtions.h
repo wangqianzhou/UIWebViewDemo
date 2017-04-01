@@ -1,5 +1,9 @@
 #import <UIKit/UIKit.h>
 
+#define SetBorderColor(view, color) \
+view.layer.borderColor = [color CGColor];\
+view.layer.borderWidth = 1.0f;
+
 @interface UIView (Frame)
 
 @property (nonatomic, assign) CGFloat x;

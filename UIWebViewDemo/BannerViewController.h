@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface BannerViewController : UIViewController
-@property(nonatomic, strong)NSURL* url;
+@property(nonatomic, strong)NSString* source;
 @end

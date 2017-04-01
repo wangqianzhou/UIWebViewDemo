@@ -8,6 +8,7 @@
 
 #import "BannerViewController.h"
 #import <WeexSDK/WXSDKInstance.h>
+#import "UIView+Addtions.h"
 
 @interface BannerView : UIView
 
@@ -44,6 +45,7 @@
     _instance.onCreate = ^(UIView *view) {
         [weakSelf.weexView removeFromSuperview];
         
+        SetBorderColor(view, [UIColor greenColor]);
         weakSelf.weexView = view;
         weakSelf.weexView.frame = weakSelf.view.bounds;
         weakSelf.weexView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -57,7 +59,9 @@
         //process renderFinish
     };
     
-    [_instance renderWithURL:self.url];
+    if ([_source length]) {
+        [_instance renderView:_source options:nil data:nil];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -70,9 +74,17 @@
     [_instance destroyInstance];
 }
 
-- (void)setUrl:(NSURL *)url
+- (void)setSource:(NSString *)source
 {
-    _url = url;
-    [_instance renderWithURL:self.url];
+    if ([_source isEqualToString:source])
+    {
+        [_instance refreshInstance:nil];
+    }
+    else
+    {
+        [_instance renderView:source options:nil data:nil];
+    }
+    
+    _source = source;
 }
 @end
