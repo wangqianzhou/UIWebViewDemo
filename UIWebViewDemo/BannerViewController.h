@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface BannerViewController : UIViewController
+
+- (instancetype)initWithName:(NSString*)name;
+
 @property(nonatomic, strong)NSString* source;
+
 @end

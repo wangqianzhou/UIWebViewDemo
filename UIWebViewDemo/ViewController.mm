@@ -69,9 +69,9 @@
         }
     }];
     
-    self.topbanner = [[BannerViewController alloc] init];
-    self.bottombanner = [[BannerViewController alloc] init];
-    self.fixedbanner = [[BannerViewController alloc] init];
+    self.topbanner = [[BannerViewController alloc] initWithName:@"TopBanner"];
+    self.bottombanner = [[BannerViewController alloc] initWithName:@"BottomBanner"];
+    self.fixedbanner = [[BannerViewController alloc] initWithName:@"FixedBanner"];
     
     [self registerAsObserver];
     

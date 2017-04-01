@@ -26,9 +26,21 @@
 @interface BannerViewController ()
 @property(nonatomic, strong)WXSDKInstance* instance;
 @property(nonatomic, strong)UIView* weexView;
+@property(nonatomic, strong)NSString* name;
 @end
 
 @implementation BannerViewController
+- (instancetype)initWithName:(NSString*)name
+{
+    if (self = [super init])
+    {
+        self.name = name;
+    }
+    
+    return self;
+}
+
+
 - (void)loadView
 {
     self.view = [[BannerView alloc] init];
@@ -40,6 +52,7 @@
     _instance = [[WXSDKInstance alloc] init];
     _instance.viewController = self;
     _instance.frame = self.view.frame;
+    _instance.pageName = _name;
     
     __weak typeof(self) weakSelf = self;
     _instance.onCreate = ^(UIView *view) {
@@ -76,15 +89,13 @@
 
 - (void)setSource:(NSString *)source
 {
-    if ([_source isEqualToString:source])
-    {
-        [_instance refreshInstance:nil];
-    }
-    else
-    {
-        [_instance renderView:source options:nil data:nil];
-    }
-    
+    [_instance renderView:source options:nil data:nil];
     _source = source;
+}
+
+- (void)setName:(NSString *)name
+{
+    _name = name;
+    _instance.pageName = name;
 }
 @end
