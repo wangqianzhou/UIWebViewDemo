@@ -265,6 +265,9 @@
     [_fixedbanner.view removeFromSuperview];
 }
 
+#define SetBorderColor(view, color) \
+view.layer.borderColor = [color CGColor];\
+view.layer.borderWidth = 1.0f;
 - (void)updateBanner
 {
     const CGFloat banner_height = 100;
@@ -276,17 +279,21 @@
     
     
     _topbanner.view.frame = CGRectMake(0, -banner_height, browserframe.size.width, banner_height);
-    _topbanner.view.backgroundColor = [[UIColor redColor] colorWithAlphaComponent:0.3];
+    SetBorderColor(_topbanner.view, [UIColor blueColor])
     [_browserview addSubview:_topbanner.view];
     
+    _topbanner.url = [NSURL URLWithString:@"http://dotwe.org/raw/dist/931cc3b3d41d40f971bba19c905ef787.bundle.wx"];
+    
     _bottombanner.view.frame = CGRectMake(0, browserframe.size.height, browserframe.size.width, banner_height);
-    _bottombanner.view.backgroundColor = [[UIColor blueColor] colorWithAlphaComponent:0.3];
+    SetBorderColor(_bottombanner.view, [UIColor blueColor])
     _bottombanner.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [_browserview addSubview:_bottombanner.view];
-    
+    _bottombanner.url = [NSURL URLWithString:@"http://dotwe.org/raw/dist/931cc3b3d41d40f971bba19c905ef787.bundle.wx"];
     
     _fixedbanner.view.frame = CGRectMake(0, _wkview.height-banner_height*2, _wkview.width, banner_height);
-    _fixedbanner.view.backgroundColor = [[UIColor greenColor] colorWithAlphaComponent:0.3];
+    SetBorderColor(_fixedbanner.view, [UIColor blueColor])
+    _fixedbanner.url = [NSURL URLWithString:@"http://dotwe.org/raw/dist/931cc3b3d41d40f971bba19c905ef787.bundle.wx"];
+    
     [_wkview addSubview:_fixedbanner.view];
 }
 
