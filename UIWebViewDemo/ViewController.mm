@@ -68,10 +68,7 @@
             *stop = YES;
         }
     }];
-    
-    self.topbanner = [[BannerViewController alloc] initWithName:@"TopBanner"];
-    self.bottombanner = [[BannerViewController alloc] initWithName:@"BottomBanner"];
-    self.fixedbanner = [[BannerViewController alloc] initWithName:@"FixedBanner"];
+
     
     [self registerAsObserver];
     
@@ -265,6 +262,10 @@
     [_bottombanner.view removeFromSuperview];
     [_fixedbanner.view removeFromSuperview];
     
+    self.topbanner = nil;
+    self.bottombanner = nil;
+    self.fixedbanner = nil;
+    
     _browserview.y = 0;
     _wkview.scrollView.contentSize = CGSizeMake(_browserview.width, _browserview.height);
 }
@@ -286,22 +287,24 @@
 
     NSString* sourcePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"weex_bundle/app.weex.js"];
     NSString* source =  [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
-
+    
+    self.topbanner = [[BannerViewController alloc] initWithName:@"TopBanner" source:source];
+    self.bottombanner = [[BannerViewController alloc] initWithName:@"BottomBanner" source:source];
+    self.fixedbanner = [[BannerViewController alloc] initWithName:@"FixedBanner" source:source];
     
     _topbanner.view.frame = CGRectMake(0, -banner_height, browserframe.size.width, banner_height);
     SetBorderColor(_topbanner.view, [UIColor blueColor])
     [_browserview addSubview:_topbanner.view];
-    _topbanner.source = source;
+
     
     _bottombanner.view.frame = CGRectMake(0, browserframe.size.height, browserframe.size.width, banner_height);
     SetBorderColor(_bottombanner.view, [UIColor blueColor])
     _bottombanner.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [_browserview addSubview:_bottombanner.view];
-    _bottombanner.source = source;
+
     
     _fixedbanner.view.frame = CGRectMake(0, _wkview.height-banner_height*2, _wkview.width, banner_height);
     SetBorderColor(_fixedbanner.view, [UIColor blueColor])
-    _fixedbanner.source = source;
     
     [_wkview addSubview:_fixedbanner.view];
 }

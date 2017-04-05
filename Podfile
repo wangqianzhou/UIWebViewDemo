@@ -8,5 +8,5 @@ target 'UIWebViewDemo' do
   # use_frameworks!
 
 	pod 'WeexSDK', :path=>'./sdk/'
-
+	pod 'SDWebImage', '~>3.8'
 end

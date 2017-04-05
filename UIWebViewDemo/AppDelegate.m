@@ -10,6 +10,7 @@
 #import "ViewController.h"
 #import "CustomPreferences.h"
 #import "WeexSDK.h"
+#import "WXImageDownloadModule.h"
 
 @implementation AppDelegate
 
@@ -67,7 +68,10 @@
     [WXAppConfiguration setAppName:@"WeexDemo"];
     [WXAppConfiguration setAppVersion:@"1.0.0"];
     //init sdk enviroment
+    
     [WXSDKEngine initSDKEnvironment];
+    [WXSDKEngine registerHandler:[WXImageDownloadModule new] withProtocol:@protocol(WXImgLoaderProtocol)];
+    
     //set the log level
     [WXLog setLogLevel: WXLogLevelWarning];
 }

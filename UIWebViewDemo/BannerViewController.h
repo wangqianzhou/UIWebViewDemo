@@ -10,8 +10,6 @@
 
 @interface BannerViewController : UIViewController
 
-- (instancetype)initWithName:(NSString*)name;
-
-@property(nonatomic, strong)NSString* source;
+- (instancetype)initWithName:(NSString*)name source:(NSString*)source;
 
 @end

@@ -27,14 +27,16 @@
 @property(nonatomic, strong)WXSDKInstance* instance;
 @property(nonatomic, strong)UIView* weexView;
 @property(nonatomic, strong)NSString* name;
+@property(nonatomic, strong)NSString* source;
 @end
 
 @implementation BannerViewController
-- (instancetype)initWithName:(NSString*)name
+- (instancetype)initWithName:(NSString*)name source:(NSString*)source
 {
     if (self = [super init])
     {
         self.name = name;
+        self.source = source;
     }
     
     return self;
@@ -87,15 +89,4 @@
     [_instance destroyInstance];
 }
 
-- (void)setSource:(NSString *)source
-{
-    [_instance renderView:source options:nil data:nil];
-    _source = source;
-}
-
-- (void)setName:(NSString *)name
-{
-    _name = name;
-    _instance.pageName = name;
-}
 @end
