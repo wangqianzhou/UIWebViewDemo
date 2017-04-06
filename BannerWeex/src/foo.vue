@@ -1,43 +1,99 @@
 <template>
-  <div class="wrapper" @click="fetch_web_info">
-    <image :src="logoUrl" class="logo"></image>
-    <text class="title">{{title}}</text>
+  <div class="browserStyle">
+    <div style="flex-direction: row">
+      <text class="textStyle" :value='page_title'>
+      </text>
+    </div>
+    <div style="flex-direction: row">
+      <text class="textStyle" :value='page_url'>
+      </text>
+    </div>
+    <div style="flex-direction: row">
+      <text class="textStyle" :value='page_keyword'>
+      </text>
+    </div>        
+    <div style="flex-direction: row">
+      <div value="网页信息" name='hello' class="buttonSytle" size="small" @click="get_page_info"></div>
+      <div value="加载网页" class="buttonSytle" size="small" @click="load_url"></div>
+      <div value="刷新" class="buttonSytle" size="small" @click="change_background"></div>
+    </div>
   </div>
 </template>
 
 <style>
-  .wrapper { align-items: center;   display: inline; }
-  .title { font-size: 20px; }
-  .logo { width: 50%; height: 100%; }
+
+  .browserStyle
+  {
+    flex:1;
+    background-color:#778899 ;
+  }
+
+  .textStyle
+  {
+    flex:1;
+    height: 50;
+    background-color: #D3D3D3;
+  }
+
+  .buttonSytle
+  {
+    width:180;
+    height: 50;
+    font-size: 12;
+    background-color: #D3D3D3;
+    margin:10;
+    padding-left: 5;
+    padding-right: 5;
+  }
+
+
 </style>
 
 <script>
-  export default 
+  var bridge = weex.requireModule('custom_bridge_module'); 
+
+  module.exports = 
   {
     data: 
     {
-      logoUrl: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png',
-      title: 'Hello World'
+      page_title : 'untitle',
+      page_url : 'about:blank',
+      page_modified : 'unknown'
     },
 
     methods: 
     {
-      fetch_web_info : function(param)
+
+      get_page_info: function (e) 
       {
-          var self = this;
-          var bridge = weex.requireModule('custom_bridge_module'); 
+         var self = this;
+
+          bridge.runJavascriptInHost('document.title',function(param) 
+          {
+             self.page_title =  param; 
+          });
           bridge.runJavascriptInHost('window.location.href',function(param) 
           {
-             self.title =  param; 
+             self.page_url =  param; 
+          });
+          bridge.runJavascriptInHost('document.lastModified',function(param) 
+          {
+             self.page_modified =  param; 
           });
       },
 
-      open_url : function(param)
+      load_url: function (e) 
       {
-           var bridge = weex.requireModule('custom_bridge_module');
-           bridge.openURL('https//m.baidu.com',function(ret) {
-           });
-      }
+        bridge.loadURL('https://m.baidu.com')
+      },
+
+      change_background: function (e) {
+          bridge.runJavascriptInHost("document.body.background-color='red'",function(param) 
+          {
+
+          });
+       }
+
     }
   }
 </script>
