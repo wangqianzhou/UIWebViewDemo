@@ -11,6 +11,7 @@
 #import "CustomPreferences.h"
 #import "WeexSDK.h"
 #import "WXImageDownloadModule.h"
+#import "WXCustomJSBridgeModule.h"
 
 @implementation AppDelegate
 
@@ -71,6 +72,8 @@
     
     [WXSDKEngine initSDKEnvironment];
     [WXSDKEngine registerHandler:[WXImageDownloadModule new] withProtocol:@protocol(WXImgLoaderProtocol)];
+    
+    [WXSDKEngine registerModule:@"custom_bridge_module" withClass:[WXCustomJSBridgeModule class]];
     
     //set the log level
     [WXLog setLogLevel: WXLogLevelWarning];

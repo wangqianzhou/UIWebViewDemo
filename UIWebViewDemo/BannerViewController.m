@@ -21,6 +21,25 @@
     [super setFrame:frame];
 }
 
+- (UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event
+{
+    return [super hitTest:point withEvent:event];
+}
+
+- (BOOL)pointInside:(CGPoint)point withEvent:(UIEvent *)event
+{
+    return [super pointInside:point withEvent:event];
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    
+}
 @end
 
 @interface BannerViewController ()
@@ -60,7 +79,7 @@
     _instance.onCreate = ^(UIView *view) {
         [weakSelf.weexView removeFromSuperview];
         
-        SetBorderColor(view, [UIColor greenColor]);
+        SetBorderColor(view, [UIColor redColor]);
         weakSelf.weexView = view;
         weakSelf.weexView.frame = weakSelf.view.bounds;
         weakSelf.weexView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -73,6 +92,8 @@
     _instance.renderFinish = ^ (UIView *view) {
         //process renderFinish
     };
+    
+    [_instance setFrame:self.view.bounds];
     
     if ([_source length]) {
         [_instance renderView:_source options:nil data:nil];
@@ -89,4 +110,13 @@
     [_instance destroyInstance];
 }
 
+- (void)runWeexJavascript:(NSString*)js withCompleteHandler:(void(^)(id result))completeHandler
+{
+    [self.delegate runWeexJavascript:js withCompleteHandler:completeHandler];
+}
+
+- (void)openURL:(NSString*)url
+{
+    [self.delegate openURL:url];
+}
 @end

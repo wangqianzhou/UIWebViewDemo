@@ -21,7 +21,7 @@
 #define DBG_LOG(frmt, ...) do{ } while(0)
 #endif
 
-@interface ViewController ()<UIWebViewDelegate, URLViewControllerDelegate, UIViewControllerPreviewingDelegate>
+@interface ViewController ()<UIWebViewDelegate, URLViewControllerDelegate, UIViewControllerPreviewingDelegate, BannerViewControllerDelegate>
 @property(nonatomic, strong)UIWebView* wkview;
 @property(nonatomic, assign)NSInteger frameLoadCount;
 @property(nonatomic, assign)UIView* browserview;
@@ -262,8 +262,13 @@
     [_bottombanner.view removeFromSuperview];
     [_fixedbanner.view removeFromSuperview];
     
+    self.topbanner.delegate = nil;
     self.topbanner = nil;
+    
+    self.bottombanner.delegate = nil;
     self.bottombanner = nil;
+    
+    self.fixedbanner.delegate = nil;
     self.fixedbanner = nil;
     
     _browserview.y = 0;
@@ -289,8 +294,13 @@
     NSString* source =  [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
     
     self.topbanner = [[BannerViewController alloc] initWithName:@"TopBanner" source:source];
+    self.topbanner.delegate = self;
+    
     self.bottombanner = [[BannerViewController alloc] initWithName:@"BottomBanner" source:source];
+    self.bottombanner.delegate = self;
+    
     self.fixedbanner = [[BannerViewController alloc] initWithName:@"FixedBanner" source:source];
+    self.fixedbanner.delegate = self;
     
     _topbanner.view.frame = CGRectMake(0, -banner_height, browserframe.size.width, banner_height);
     SetBorderColor(_topbanner.view, [UIColor blueColor])
@@ -417,5 +427,18 @@
     {
         [self updateBanner];
     }
+}
+
+#pragma mark- BannerViewControllerDelegate
+- (void)runWeexJavascript:(NSString*)js withCompleteHandler:(void(^)(id result))completeHandler
+{
+    NSString* result = [_wkview stringByEvaluatingJavaScriptFromString:js];
+    
+    completeHandler(result);
+}
+
+- (void)openURL:(NSString*)url
+{
+    [self loadWithURLString:url];
 }
 @end

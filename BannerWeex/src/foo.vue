@@ -1,26 +1,42 @@
 <template>
-  <div class="wrapper" @click="update">
+  <div class="wrapper" @click="fetch_web_info">
     <image :src="logoUrl" class="logo"></image>
-    <text class="title">Hello {{target}}</text>
+    <text class="title">{{title}}</text>
   </div>
 </template>
 
 <style>
-  .wrapper { align-items: center; margin-top: 120px; }
-  .title { font-size: 48px; }
-  .logo { width: 360px; height: 82px; }
+  .wrapper { align-items: center;   display: inline; }
+  .title { font-size: 20px; }
+  .logo { width: 50%; height: 100%; }
 </style>
 
 <script>
-  export default {
-    data: {
+  export default 
+  {
+    data: 
+    {
       logoUrl: 'https://alibaba.github.io/weex/img/weex_logo_blue@3x.png',
-      target: 'World'
+      title: 'Hello World'
     },
-    methods: {
-      update: function (e) {
-        this.target = 'Weex'
-        console.log('target:', this.target)
+
+    methods: 
+    {
+      fetch_web_info : function(param)
+      {
+          var self = this;
+          var bridge = weex.requireModule('custom_bridge_module'); 
+          bridge.runJavascriptInHost('window.location.href',function(param) 
+          {
+             self.title =  param; 
+          });
+      },
+
+      open_url : function(param)
+      {
+           var bridge = weex.requireModule('custom_bridge_module');
+           bridge.openURL('https//m.baidu.com',function(ret) {
+           });
       }
     }
   }

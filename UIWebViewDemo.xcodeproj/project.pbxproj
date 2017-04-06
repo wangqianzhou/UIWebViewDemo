@@ -30,6 +30,7 @@
 		935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 935FB2601E20E1E600E3EBD8 /* ViewController.mm */; };
 		9376DE8C1C1054EE00256A7A /* CustomPreferences.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */; };
 		937B89F81E94E3DF009B127C /* WXImageDownloadModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 937B89F71E94E3DF009B127C /* WXImageDownloadModule.m */; };
+		937B89FB1E95D3FC009B127C /* WXCustomJSBridgeModule.m in Sources */ = {isa = PBXBuildFile; fileRef = 937B89FA1E95D3FC009B127C /* WXCustomJSBridgeModule.m */; };
 		939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 939F9BE81E35A66300E3BFDE /* URLModel.m */; };
 		93A1F7F01E8FA9270055044C /* weex_bundle in Resources */ = {isa = PBXBuildFile; fileRef = 93A1F7EF1E8FA9270055044C /* weex_bundle */; };
 /* End PBXBuildFile section */
@@ -84,6 +85,8 @@
 		9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = CustomPreferences.mm; sourceTree = "<group>"; };
 		937B89F61E94E3DF009B127C /* WXImageDownloadModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXImageDownloadModule.h; sourceTree = "<group>"; };
 		937B89F71E94E3DF009B127C /* WXImageDownloadModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXImageDownloadModule.m; sourceTree = "<group>"; };
+		937B89F91E95D3FC009B127C /* WXCustomJSBridgeModule.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WXCustomJSBridgeModule.h; sourceTree = "<group>"; };
+		937B89FA1E95D3FC009B127C /* WXCustomJSBridgeModule.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WXCustomJSBridgeModule.m; sourceTree = "<group>"; };
 		939F9BE71E35A66300E3BFDE /* URLModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = URLModel.h; sourceTree = "<group>"; };
 		939F9BE81E35A66300E3BFDE /* URLModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = URLModel.m; sourceTree = "<group>"; };
 		93A1F7EF1E8FA9270055044C /* weex_bundle */ = {isa = PBXFileReference; lastKnownFileType = folder; path = weex_bundle; sourceTree = "<group>"; };
@@ -202,6 +205,8 @@
 			children = (
 				937B89F61E94E3DF009B127C /* WXImageDownloadModule.h */,
 				937B89F71E94E3DF009B127C /* WXImageDownloadModule.m */,
+				937B89F91E95D3FC009B127C /* WXCustomJSBridgeModule.h */,
+				937B89FA1E95D3FC009B127C /* WXCustomJSBridgeModule.m */,
 			);
 			path = WeexExtendModule;
 			sourceTree = "<group>";
@@ -334,6 +339,7 @@
 				9376DE8C1C1054EE00256A7A /* CustomPreferences.mm in Sources */,
 				9310312617AC9F2D003BA1EE /* AppDelegate.m in Sources */,
 				93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */,
+				937B89FB1E95D3FC009B127C /* WXCustomJSBridgeModule.m in Sources */,
 				939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */,
 				935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */,
 				930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */,
