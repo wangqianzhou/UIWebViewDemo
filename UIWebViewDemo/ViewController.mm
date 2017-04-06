@@ -285,12 +285,8 @@
         return ;
     }
     
-    CGRect browserframe = _browserview.frame;
-    browserframe.origin.y = banner_height;
+    _browserview.y = banner_height;
     
-    _browserview.frame = browserframe;
-    _browserview.bounds = CGRectMake(0, browserframe.origin.y-banner_height, browserframe.size.width, browserframe.size.height);
-
     NSString* sourcePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"weex_bundle/app.weex.js"];
     NSString* source =  [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
     
@@ -303,21 +299,30 @@
     self.fixedbanner = [[BannerViewController alloc] initWithName:@"FixedBanner" source:source];
     self.fixedbanner.delegate = self;
     
-    _topbanner.view.frame = CGRectMake(0, -banner_height, browserframe.size.width, banner_height);
+    _topbanner.view.frame = CGRectMake(0, 0, _wkview.scrollView.width, banner_height);
+    _topbanner.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     SetBorderColor(_topbanner.view, [UIColor blueColor])
-    [_browserview addSubview:_topbanner.view];
+    [_wkview.scrollView addSubview:_topbanner.view];
 
     
-    _bottombanner.view.frame = CGRectMake(0, browserframe.size.height, browserframe.size.width, banner_height);
+    _bottombanner.view.frame = CGRectMake(0, 0, _wkview.scrollView.width, banner_height);
     SetBorderColor(_bottombanner.view, [UIColor blueColor])
-    _bottombanner.view.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
-    [_browserview addSubview:_bottombanner.view];
+    _bottombanner.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [_wkview.scrollView addSubview:_bottombanner.view];
 
     
     _fixedbanner.view.frame = CGRectMake(0, _wkview.height-banner_height*2, _wkview.width, banner_height);
     SetBorderColor(_fixedbanner.view, [UIColor blueColor])
     
     [_wkview addSubview:_fixedbanner.view];
+    
+    [self updateBannerPosition];
+}
+
+- (void)updateBannerPosition
+{
+    _topbanner.view.maxY = _browserview.y;
+    _bottombanner.view.y = _browserview.maxY;
 }
 
 #pragma mark- UIViewControllerPreviewingDelegate
@@ -388,8 +393,14 @@
                     _wkview.scrollView.contentSize = contentSizeWithBottomBanner;
                     
                     DBG_LOG(@"ContentSize: %@ -> %@", NSStringFromCGSize(newContentSize), NSStringFromCGSize(contentSizeWithBottomBanner));
+                    
+                    [self updateBannerPosition];
                 });
             }
+        }
+        else if ([keyPath isEqualToString:@"contentOffset"])
+        {
+            [self updateBannerPosition];
         }
     }
     else

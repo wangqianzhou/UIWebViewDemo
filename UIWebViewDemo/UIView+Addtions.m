@@ -74,7 +74,7 @@
 
 - (void)setMaxY:(CGFloat)maxY {
     CGRect frame = self.frame;
-    frame.size.width = self.y + self.height;
+    frame.size.height = self.y + self.height;
     self.frame = frame;
 }
 
