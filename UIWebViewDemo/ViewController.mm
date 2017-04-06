@@ -289,6 +289,7 @@
     browserframe.origin.y = banner_height;
     
     _browserview.frame = browserframe;
+    _browserview.bounds = CGRectMake(0, browserframe.origin.y-banner_height, browserframe.size.width, browserframe.size.height);
 
     NSString* sourcePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"weex_bundle/app.weex.js"];
     NSString* source =  [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
