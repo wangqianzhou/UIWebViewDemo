@@ -74,11 +74,19 @@
         //process renderFinish
     };
     
-    [_instance setFrame:self.view.bounds];
-    
     if ([_source length]) {
         [_instance renderView:_source options:nil data:nil];
     }
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    [self registerAsObserver];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self unregisterAsObserver];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,4 +108,40 @@
 {
     [self.delegate openURL:url];
 }
+
+#pragma mark- KVO
+- (void)registerAsObserver
+{
+    [self.view addObserver:self
+                         forKeyPath:@"frame"
+                            options:(NSKeyValueObservingOptionNew | NSKeyValueObservingOptionInitial)
+                            context:nil];
+}
+
+- (void)unregisterAsObserver
+{
+    [self.view removeObserver:self
+                            forKeyPath:@"frame"
+                               context:nil];
+    
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath
+                      ofObject:(id)object
+                        change:(NSDictionary *)change
+                       context:(void *)context {
+    
+    if (object == self.view && [keyPath isEqualToString:@"frame"])
+    {
+        [_instance setFrame:self.view.bounds];
+    }
+    else
+    {
+        [super observeValueForKeyPath:keyPath
+                             ofObject:object
+                               change:change
+                              context:context];
+    }
+}
+
 @end
