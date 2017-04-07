@@ -9,13 +9,13 @@
       </text>
     </div>
     <div style="flex-direction: row">
-      <text class="textStyle" :value='page_keyword'>
+      <text class="textStyle" :value='page_modified'>
       </text>
     </div>        
     <div style="flex-direction: row">
-      <div value="网页信息" name='hello' class="buttonSytle" size="small" @click="get_page_info"></div>
-      <div value="加载网页" class="buttonSytle" size="small" @click="load_url"></div>
-      <div value="刷新" class="buttonSytle" size="small" @click="change_background"></div>
+      <div value="page_info" name='hello' class="buttonSytle" size="small" @click="get_page_info"></div>
+      <div value="change_bk_color" class="buttonSytle" size="small" @click="change_background"></div>
+      <div value="load_url" class="buttonSytle" size="small" @click="load_url"></div>      
     </div>
   </div>
 </template>
@@ -81,19 +81,17 @@
              self.page_modified =  param; 
           });
       },
-
-      load_url: function (e) 
-      {
-        bridge.loadURL('https://m.baidu.com')
-      },
-
       change_background: function (e) {
-          bridge.runJavascriptInHost("document.body.background-color='red'",function(param) 
+          bridge.runJavascriptInHost("document.body.style.backgroundColor='red'; alert('say hello from weex');",function(param) 
           {
 
           });
-       }
+      },
 
+      load_url: function (e) 
+      {
+        bridge.openURL('https://m.baidu.com')
+      }
     }
   }
 </script>
