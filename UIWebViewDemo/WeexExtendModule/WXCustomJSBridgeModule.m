@@ -35,7 +35,10 @@ WX_EXPORT_METHOD(@selector(openURL:callback:))
         
         [controller openURL:url];
         
-        callback(@(YES));
+        if (callback)
+        {
+            callback(@(YES));            
+        }
     }
 }
 @end
