@@ -19,6 +19,8 @@
 		9310312A17AC9F2D003BA1EE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312917AC9F2D003BA1EE /* Default@2x.png */; };
 		9310312C17AC9F2D003BA1EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312B17AC9F2D003BA1EE /* Default-568h@2x.png */; };
 		931194DF1E8E073800F2AA1C /* BannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 931194DE1E8E073800F2AA1C /* BannerViewController.m */; };
+		9312B7F81E972AE800F79C42 /* BannerWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9312B7F71E972AE800F79C42 /* BannerWebViewController.m */; };
+		9312B7FA1E972F5200F79C42 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9312B7F91E972F5200F79C42 /* WebKit.framework */; };
 		93385A5A1E279597001980DC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A591E279597001980DC /* CustomButton.m */; };
 		93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5C1E27AB21001980DC /* UIView+Addtions.m */; };
 		93385A601E27B73D001980DC /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5F1E27B73D001980DC /* URLViewController.m */; };
@@ -69,6 +71,9 @@
 		9310312D17AC9F2D003BA1EE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		931194DD1E8E073800F2AA1C /* BannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerViewController.h; sourceTree = "<group>"; };
 		931194DE1E8E073800F2AA1C /* BannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerViewController.m; sourceTree = "<group>"; };
+		9312B7F61E972AE800F79C42 /* BannerWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BannerWebViewController.h; sourceTree = "<group>"; };
+		9312B7F71E972AE800F79C42 /* BannerWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BannerWebViewController.m; sourceTree = "<group>"; };
+		9312B7F91E972F5200F79C42 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		93385A581E279597001980DC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		93385A591E279597001980DC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		93385A5B1E27AB21001980DC /* UIView+Addtions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Addtions.h"; sourceTree = "<group>"; };
@@ -99,6 +104,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9312B7FA1E972F5200F79C42 /* WebKit.framework in Frameworks */,
 				935FB25C1E20DBBB00E3EBD8 /* MobileCoreServices.framework in Frameworks */,
 				935FB25A1E20DB9400E3EBD8 /* Security.framework in Frameworks */,
 				935FB2581E20DB6400E3EBD8 /* SystemConfiguration.framework in Frameworks */,
@@ -144,6 +150,7 @@
 		9310311417AC9F2D003BA1EE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9312B7F91E972F5200F79C42 /* WebKit.framework */,
 				935FB25B1E20DBBB00E3EBD8 /* MobileCoreServices.framework */,
 				935FB2591E20DB9400E3EBD8 /* Security.framework */,
 				935FB2571E20DB6400E3EBD8 /* SystemConfiguration.framework */,
@@ -181,6 +188,8 @@
 				93385A5F1E27B73D001980DC /* URLViewController.m */,
 				931194DD1E8E073800F2AA1C /* BannerViewController.h */,
 				931194DE1E8E073800F2AA1C /* BannerViewController.m */,
+				9312B7F61E972AE800F79C42 /* BannerWebViewController.h */,
+				9312B7F71E972AE800F79C42 /* BannerWebViewController.m */,
 				9310311C17AC9F2D003BA1EE /* Supporting Files */,
 			);
 			path = UIWebViewDemo;
@@ -341,6 +350,7 @@
 				93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */,
 				937B89FB1E95D3FC009B127C /* WXCustomJSBridgeModule.m in Sources */,
 				939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */,
+				9312B7F81E972AE800F79C42 /* BannerWebViewController.m in Sources */,
 				935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */,
 				930EE78A1A1FA5B900052723 /* CustomURLProtocol.m in Sources */,
 				937B89F81E94E3DF009B127C /* WXImageDownloadModule.m in Sources */,

@@ -12,6 +12,7 @@
 #import "UIView+Addtions.h"
 #import "URLViewController.h"
 #import "BannerViewController.h"
+#import "BannerWebViewController.h"
 
 #define ENABLE_DBG_LOG 0
 
@@ -21,13 +22,27 @@
 #define DBG_LOG(frmt, ...) do{ } while(0)
 #endif
 
-@interface ViewController ()<UIWebViewDelegate, URLViewControllerDelegate, UIViewControllerPreviewingDelegate, BannerViewControllerDelegate>
+static const CGFloat banner_height = 100;
+
+@interface ViewController ()<UIWebViewDelegate,
+                            URLViewControllerDelegate,
+                            UIViewControllerPreviewingDelegate,
+                            BannerViewControllerDelegate,
+                            BannerWebViewControllerDelegate>
+
 @property(nonatomic, strong)UIWebView* wkview;
 @property(nonatomic, assign)NSInteger frameLoadCount;
 @property(nonatomic, assign)UIView* browserview;
 @property(nonatomic, strong)BannerViewController* topbanner;
 @property(nonatomic, strong)BannerViewController* bottombanner;
 @property(nonatomic, strong)BannerViewController* fixedbanner;
+
+@property(nonatomic, strong)BannerWebViewController* topWebbanner;
+@property(nonatomic, strong)BannerWebViewController* bottomWebbanner;
+@property(nonatomic, strong)BannerWebViewController* fixedWebbanner;
+
+@property(nonatomic, assign)BOOL useWeexBanner;
+
 @end
 
 @implementation ViewController
@@ -39,6 +54,7 @@
     if (self = [super init])
     {
         m_nFrameLoadCount = 0;
+        _useWeexBanner = YES;
     }
     
     return self;
@@ -100,6 +116,20 @@
     btn.right = self.view.right;
     btn.centerY = self.view.centerY;
     btn.backgroundColor = [[UIColor brownColor] colorWithAlphaComponent:0.5];
+    [self.view addSubview:btn];
+    
+    btn = [self buttonWithTitle:@"WEB"];
+    btn.tag = 4;
+    btn.bottom = self.view.bottom;
+    btn.backgroundColor = [[UIColor magentaColor] colorWithAlphaComponent:0.5];
+    [self.view addSubview:btn];
+    
+    
+    btn = [self buttonWithTitle:@"WX"];
+    btn.tag = 5;
+    btn.bottom = self.view.bottom;
+    btn.right = self.view.right;
+    btn.backgroundColor = [[UIColor cyanColor] colorWithAlphaComponent:0.5];
     [self.view addSubview:btn];
 }
 
@@ -220,6 +250,47 @@
     [_wkview goForward];
 }
 
+//web
+- (void)onBtn_4
+{
+    _useWeexBanner = NO;
+
+    [_topbanner.view removeFromSuperview];
+    [_bottombanner.view removeFromSuperview];
+    [_fixedbanner.view removeFromSuperview];
+    
+    self.topbanner.delegate = nil;
+    self.topbanner = nil;
+    
+    self.bottombanner.delegate = nil;
+    self.bottombanner = nil;
+    
+    self.fixedbanner.delegate = nil;
+    self.fixedbanner = nil;
+    
+    [self updateBanner];
+}
+
+//weex
+- (void)onBtn_5
+{
+    _useWeexBanner = YES;
+
+    [_topWebbanner.view removeFromSuperview];
+    [_bottomWebbanner.view removeFromSuperview];
+    [_fixedWebbanner.view removeFromSuperview];
+    
+    self.topWebbanner.delegate = nil;
+    self.topWebbanner = nil;
+    
+    self.bottomWebbanner.delegate = nil;
+    self.bottomWebbanner = nil;
+    
+    self.fixedWebbanner.delegate = nil;
+    self.fixedWebbanner = nil;
+        
+    [self updateBanner];
+}
 #pragma mark- ButtonActions
 - (void)loadWithURLString:(NSString*)link
 {
@@ -278,8 +349,6 @@
 
 - (void)updateBanner
 {
-    const CGFloat banner_height = 100;
-    
     if ( ! [self shouldDisplayBanner] )
     {
         return ;
@@ -287,6 +356,17 @@
     
     _browserview.y = banner_height;
     
+    if (_useWeexBanner) {
+        [self updateWeexBanner];
+    } else {
+        [self updateWebBanner];
+    }
+    
+    [self updateBannerPosition];
+}
+
+- (void)updateWeexBanner
+{
     NSString* sourcePath = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"weex_bundle/app.weex.js"];
     NSString* source =  [NSString stringWithContentsOfFile:sourcePath encoding:NSUTF8StringEncoding error:nil];
     
@@ -303,26 +383,60 @@
     _topbanner.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     SetBorderColor(_topbanner.view, [UIColor blueColor])
     [_wkview.scrollView addSubview:_topbanner.view];
-
+    
     
     _bottombanner.view.frame = CGRectMake(0, 0, _wkview.scrollView.width, banner_height);
     SetBorderColor(_bottombanner.view, [UIColor blueColor])
     _bottombanner.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [_wkview.scrollView addSubview:_bottombanner.view];
-
+    
     
     _fixedbanner.view.frame = CGRectMake(0, _wkview.height-banner_height*2, _wkview.width, banner_height);
     SetBorderColor(_fixedbanner.view, [UIColor blueColor])
     
     [_wkview addSubview:_fixedbanner.view];
+}
+
+- (void)updateWebBanner
+{
+    NSString* url = @"https://m.baidu.com";
     
-    [self updateBannerPosition];
+    self.topWebbanner = [[BannerWebViewController alloc] initWithURL:url];
+    self.topWebbanner.delegate = self;
+    
+    self.bottomWebbanner = [[BannerWebViewController alloc] initWithURL:url];
+    self.bottomWebbanner.delegate = self;
+    
+    self.fixedWebbanner = [[BannerWebViewController alloc] initWithURL:url];
+    self.fixedWebbanner.delegate = self;
+    
+    _topWebbanner.view.frame = CGRectMake(0, 0, _wkview.scrollView.width, banner_height);
+    _topWebbanner.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    SetBorderColor(_topWebbanner.view, [UIColor blueColor])
+    [_wkview.scrollView addSubview:_topWebbanner.view];
+    
+    
+    _bottomWebbanner.view.frame = CGRectMake(0, 0, _wkview.scrollView.width, banner_height);
+    SetBorderColor(_bottomWebbanner.view, [UIColor blueColor])
+    _bottomWebbanner.view.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+    [_wkview.scrollView addSubview:_bottomWebbanner.view];
+    
+    
+    _fixedWebbanner.view.frame = CGRectMake(0, _wkview.height-banner_height*2, _wkview.width, banner_height);
+    SetBorderColor(_fixedWebbanner.view, [UIColor blueColor])
+    
+    [_wkview addSubview:_fixedWebbanner.view];
 }
 
 - (void)updateBannerPosition
 {
-    _topbanner.view.maxY = _browserview.y;
-    _bottombanner.view.y = _browserview.maxY;
+    if (_useWeexBanner) {
+        _topbanner.view.maxY = _browserview.y;
+        _bottombanner.view.y = _browserview.maxY;
+    } else {
+        _topWebbanner.view.maxY = _browserview.y;
+        _bottomWebbanner.view.y = _browserview.maxY;
+    }
 }
 
 #pragma mark- UIViewControllerPreviewingDelegate
@@ -453,4 +567,7 @@
 {
     [self loadWithURLString:url];
 }
+
+#pragma mark- BannerWebViewControllerDelegate
+
 @end
