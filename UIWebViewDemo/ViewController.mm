@@ -12,7 +12,7 @@
 #import "CustomButton.h"
 #import "UIView+Addtions.h"
 #import "URLViewController.h"
-#import <sys/kdebug_signpost.h>
+#import "WebViewJavascriptBridge.h"
 
 #define ENABLE_DBG_LOG 1
 
@@ -26,6 +26,7 @@
 @property(nonatomic, strong)UIWebView* wkview;
 @property(nonatomic, strong)UITableView* tabView;
 @property(nonatomic, assign)NSInteger frameLoadCount;
+@property(nonatomic, strong)WebViewJavascriptBridge* jsbridge;
 @end
 
 @implementation ViewController
@@ -62,6 +63,8 @@
     [mainView addSubview:webView];
     self.wkview = webView;
     
+    self.jsbridge = [WebViewJavascriptBridge bridge:self.wkview];
+    [self.jsbridge setWebViewDelegate:self];
     
     [self initAllButtons];
 }

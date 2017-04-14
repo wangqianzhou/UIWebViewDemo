@@ -20,17 +20,16 @@
 		93385A5A1E279597001980DC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A591E279597001980DC /* CustomButton.m */; };
 		93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5C1E27AB21001980DC /* UIView+Addtions.m */; };
 		93385A601E27B73D001980DC /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5F1E27B73D001980DC /* URLViewController.m */; };
-		93385A621E2885BC001980DC /* get_touch_range_text.js in Resources */ = {isa = PBXBuildFile; fileRef = 93385A611E2885BC001980DC /* get_touch_range_text.js */; };
 		935FB2401E20DA8400E3EBD8 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935FB23F1E20DA8400E3EBD8 /* CoreFoundation.framework */; };
 		935FB2421E20DAB900E3EBD8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935FB2411E20DAB900E3EBD8 /* QuartzCore.framework */; };
 		935FB2581E20DB6400E3EBD8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935FB2571E20DB6400E3EBD8 /* SystemConfiguration.framework */; };
 		935FB25A1E20DB9400E3EBD8 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935FB2591E20DB9400E3EBD8 /* Security.framework */; };
 		935FB25C1E20DBBB00E3EBD8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 935FB25B1E20DBBB00E3EBD8 /* MobileCoreServices.framework */; };
 		935FB2611E20E1E600E3EBD8 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 935FB2601E20E1E600E3EBD8 /* ViewController.mm */; };
-		935FB2631E20E58500E3EBD8 /* get_select.js in Resources */ = {isa = PBXBuildFile; fileRef = 935FB2621E20E58500E3EBD8 /* get_select.js */; };
 		9376DE8C1C1054EE00256A7A /* CustomPreferences.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */; };
 		939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 939F9BE81E35A66300E3BFDE /* URLModel.m */; };
 		93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CAF32A1A1FB13000D37400 /* UIView+Toast.m */; };
+		D192E281ACDBEDA9B7477627 /* libPods-UIWebViewDemo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 1A456D558C384FC42E116053 /* libPods-UIWebViewDemo.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -47,6 +46,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1A456D558C384FC42E116053 /* libPods-UIWebViewDemo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-UIWebViewDemo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4FC937EAAD901A86B4B6EE95 /* Pods-UIWebViewDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIWebViewDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		930EE7881A1FA5B900052723 /* CustomURLProtocol.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomURLProtocol.h; sourceTree = "<group>"; };
 		930EE7891A1FA5B900052723 /* CustomURLProtocol.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomURLProtocol.m; sourceTree = "<group>"; };
 		9310311217AC9F2D003BA1EE /* UIWebViewDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = UIWebViewDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -84,6 +85,7 @@
 		93C9E4761950242300516B63 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		93CAF3291A1FB13000D37400 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		93CAF32A1A1FB13000D37400 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		B3F13DF5CBE4C028EDFD8C37 /* Pods-UIWebViewDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-UIWebViewDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,18 +101,29 @@
 				9310311617AC9F2D003BA1EE /* UIKit.framework in Frameworks */,
 				9310311817AC9F2D003BA1EE /* Foundation.framework in Frameworks */,
 				9310311A17AC9F2D003BA1EE /* CoreGraphics.framework in Frameworks */,
+				D192E281ACDBEDA9B7477627 /* libPods-UIWebViewDemo.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7A39E58E9F60CB88D354C0F3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4FC937EAAD901A86B4B6EE95 /* Pods-UIWebViewDemo.debug.xcconfig */,
+				B3F13DF5CBE4C028EDFD8C37 /* Pods-UIWebViewDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		9310310917AC9F2D003BA1EE = {
 			isa = PBXGroup;
 			children = (
 				9310311B17AC9F2D003BA1EE /* UIWebViewDemo */,
 				9310311417AC9F2D003BA1EE /* Frameworks */,
 				9310311317AC9F2D003BA1EE /* Products */,
+				7A39E58E9F60CB88D354C0F3 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -134,6 +147,7 @@
 				9310311717AC9F2D003BA1EE /* Foundation.framework */,
 				9310311917AC9F2D003BA1EE /* CoreGraphics.framework */,
 				93C9E4761950242300516B63 /* NotificationCenter.framework */,
+				1A456D558C384FC42E116053 /* libPods-UIWebViewDemo.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -195,10 +209,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9310313517AC9F2D003BA1EE /* Build configuration list for PBXNativeTarget "UIWebViewDemo" */;
 			buildPhases = (
+				2628EB17EA4C9B22070B129D /* [CP] Check Pods Manifest.lock */,
 				9310310E17AC9F2D003BA1EE /* Sources */,
 				9310310F17AC9F2D003BA1EE /* Frameworks */,
 				9310311017AC9F2D003BA1EE /* Resources */,
 				93C9E4481950227300516B63 /* Embed App Extensions */,
+				1D804219151DBF7017EC7C58 /* [CP] Embed Pods Frameworks */,
+				91994B158C02244FBF878C6F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -245,9 +262,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				935FB2631E20E58500E3EBD8 /* get_select.js in Resources */,
 				9310312017AC9F2D003BA1EE /* InfoPlist.strings in Resources */,
-				93385A621E2885BC001980DC /* get_touch_range_text.js in Resources */,
 				9310312817AC9F2D003BA1EE /* Default.png in Resources */,
 				9310312A17AC9F2D003BA1EE /* Default@2x.png in Resources */,
 				9310312C17AC9F2D003BA1EE /* Default-568h@2x.png in Resources */,
@@ -255,6 +270,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1D804219151DBF7017EC7C58 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2628EB17EA4C9B22070B129D /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		91994B158C02244FBF878C6F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-UIWebViewDemo/Pods-UIWebViewDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		9310310E17AC9F2D003BA1EE /* Sources */ = {
@@ -365,6 +428,7 @@
 		};
 		9310313617AC9F2D003BA1EE /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4FC937EAAD901A86B4B6EE95 /* Pods-UIWebViewDemo.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
@@ -385,6 +449,7 @@
 		};
 		9310313717AC9F2D003BA1EE /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = B3F13DF5CBE4C028EDFD8C37 /* Pods-UIWebViewDemo.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
