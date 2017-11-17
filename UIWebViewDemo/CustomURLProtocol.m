@@ -8,13 +8,20 @@
 
 #import "CustomURLProtocol.h"
 
+#define REQUEST_LOG_ENABLE 0
+
+#if REQUEST_LOG_ENABLE
+#define REQUEST_LOG(frmt, ...) NSLog((@"[REQUEST] " frmt), ##__VA_ARGS__)
+#else
+#define REQUEST_LOG(frmt, ...) do{ } while(0)
+#endif
+
 @interface CustomURLProtocol ()<NSURLConnectionDataDelegate, NSURLConnectionDelegate>
 @property(nonatomic, strong)NSMutableURLRequest* mReuqest;
 @property(nonatomic, strong)NSURLConnection* connection;
 @end
 
 @implementation CustomURLProtocol
-
 
 + (BOOL)canInitWithRequest:(NSURLRequest *)request
 {
@@ -56,6 +63,8 @@
     
     [_connection scheduleInRunLoop:[NSRunLoop currentRunLoop] forMode:[[NSRunLoop currentRunLoop] currentMode]];
     [_connection start];
+    
+    REQUEST_LOG(@"\n%s\n%@\n%@\n-----------------\n", __FUNCTION__,  _mReuqest, [_mReuqest allHTTPHeaderFields]);
 }
 
 
@@ -64,17 +73,25 @@
     [_connection cancel];
     
     self.connection = nil;
+    REQUEST_LOG(@"\n%s\n%@\n-----------------\n", __FUNCTION__,  _mReuqest);
 }
 
 #pragma mark- NSURLConnectionDelegate
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
 {
     [[self client] URLProtocol:self didFailWithError:error];
+    REQUEST_LOG(@"\n%s\n%@\n%@\n-----------------\n", __FUNCTION__,  _mReuqest, error);
 }
 
 #pragma mark- NSURLConnectionDataDelegate
 - (NSURLRequest *)connection:(NSURLConnection *)connection willSendRequest:(NSURLRequest *)request redirectResponse:(NSURLResponse *)response
 {
+    NSHTTPURLResponse* httpResp = (NSHTTPURLResponse*)response;
+    if (response && httpResp)
+    {
+        REQUEST_LOG(@"\n%s\n%@\nStatusCode:%@\n%@\n-----------------\n", __FUNCTION__,  _mReuqest, @(httpResp.statusCode), [httpResp allHeaderFields]);
+    }
+    
     if (response != nil)
     {
         [[self client] URLProtocol:self wasRedirectedToRequest:request redirectResponse:response];
@@ -89,11 +106,17 @@
 - (void)connection:(NSURLConnection *)connection didReceiveResponse:(NSURLResponse *)response
 {
     [[self client] URLProtocol:self didReceiveResponse:response cacheStoragePolicy:NSURLCacheStorageAllowed];
+    
+    NSHTTPURLResponse* httpResp = (NSHTTPURLResponse*)response;
+    if (httpResp) {
+        REQUEST_LOG(@"\n%s\n%@\nStatusCode:%@\n%@\n-----------------\n", __FUNCTION__,  _mReuqest, @(httpResp.statusCode), [httpResp allHeaderFields]);
+    }
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
 {
     [[self client] URLProtocol:self didLoadData:data];
+    REQUEST_LOG(@"\n%s\n%@\nDataLength: %@\n-----------------\n", __FUNCTION__,  _mReuqest, @([data length]));
 }
 - (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse
 {
@@ -103,6 +126,7 @@
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection
 {
     [[self client] URLProtocolDidFinishLoading:self];
+    REQUEST_LOG(@"\n%s\n%@\n-----------------\n", __FUNCTION__,  _mReuqest);
 }
 
 @end
