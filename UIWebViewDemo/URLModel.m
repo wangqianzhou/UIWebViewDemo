@@ -13,7 +13,10 @@ static NSString* URLList[] =
     @"http://hao123.com",
     @"http://m.baidu.com",
     @"http://sina.cn/?wm=4007",
-    @"http://httpstat.us/"
+    @"http://httpstat.us/",
+    @"https://wangqianzhou.github.io/fix-element/fix-element.html",
+    @"http://m.ncwxw.net",
+    @"http://m.vodtw.com"
 };
 
 @interface URLModel ( )
