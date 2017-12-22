@@ -22,7 +22,7 @@
 #define DBG_LOG(frmt, ...) do{ } while(0)
 #endif
 
-@interface ViewController ()<UIWebViewDelegate, URLViewControllerDelegate, UIViewControllerPreviewingDelegate>
+@interface ViewController ()<UIWebViewDelegate, URLViewControllerDelegate, UIViewControllerPreviewingDelegate, UIScrollViewDelegate>
 @property(nonatomic, strong)UIWebView* wkview;
 @property(nonatomic, strong)UITableView* tabView;
 @property(nonatomic, assign)NSInteger frameLoadCount;
@@ -54,7 +54,7 @@
     webView.dataDetectorTypes = UIDataDetectorTypeNone;
 
     
-    
+    webView.scrollView.delegate = self;
     webView.allowsLinkPreview = NO;
     webView.scalesPageToFit = YES;
     webView.delegate = self;
@@ -248,6 +248,11 @@
 - (void)previewingContext:(id <UIViewControllerPreviewing>)previewingContext commitViewController:(UIViewController *)viewControllerToCommit NS_AVAILABLE_IOS(9_0)
 {
     [self.navigationController pushViewController:viewControllerToCommit animated:NO];
+}
+
+- (nullable UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView
+{  
+    return self.view;
 }
 
 @end
