@@ -14,9 +14,6 @@
 		9310312017AC9F2D003BA1EE /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 9310311E17AC9F2D003BA1EE /* InfoPlist.strings */; };
 		9310312217AC9F2D003BA1EE /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310312117AC9F2D003BA1EE /* main.m */; };
 		9310312617AC9F2D003BA1EE /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9310312517AC9F2D003BA1EE /* AppDelegate.m */; };
-		9310312817AC9F2D003BA1EE /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312717AC9F2D003BA1EE /* Default.png */; };
-		9310312A17AC9F2D003BA1EE /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312917AC9F2D003BA1EE /* Default@2x.png */; };
-		9310312C17AC9F2D003BA1EE /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9310312B17AC9F2D003BA1EE /* Default-568h@2x.png */; };
 		93385A5A1E279597001980DC /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A591E279597001980DC /* CustomButton.m */; };
 		93385A5D1E27AB21001980DC /* UIView+Addtions.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5C1E27AB21001980DC /* UIView+Addtions.m */; };
 		93385A601E27B73D001980DC /* URLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 93385A5F1E27B73D001980DC /* URLViewController.m */; };
@@ -29,6 +26,7 @@
 		9376DE8C1C1054EE00256A7A /* CustomPreferences.mm in Sources */ = {isa = PBXBuildFile; fileRef = 9376DE8B1C1054EE00256A7A /* CustomPreferences.mm */; };
 		939F9BE91E35A66300E3BFDE /* URLModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 939F9BE81E35A66300E3BFDE /* URLModel.m */; };
 		93CAF32B1A1FB13000D37400 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 93CAF32A1A1FB13000D37400 /* UIView+Toast.m */; };
+		93F946AC208B250C0028B49B /* AppImages.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 93F946AB208B250C0028B49B /* AppImages.xcassets */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -57,9 +55,6 @@
 		9310312317AC9F2D003BA1EE /* UIWebViewDemo-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIWebViewDemo-Prefix.pch"; sourceTree = "<group>"; };
 		9310312417AC9F2D003BA1EE /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		9310312517AC9F2D003BA1EE /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		9310312717AC9F2D003BA1EE /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		9310312917AC9F2D003BA1EE /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
-		9310312B17AC9F2D003BA1EE /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		9310312D17AC9F2D003BA1EE /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		93385A581E279597001980DC /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
 		93385A591E279597001980DC /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
@@ -80,6 +75,7 @@
 		93C9E4761950242300516B63 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		93CAF3291A1FB13000D37400 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		93CAF32A1A1FB13000D37400 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
+		93F946AB208B250C0028B49B /* AppImages.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = AppImages.xcassets; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +150,7 @@
 				939F9BE81E35A66300E3BFDE /* URLModel.m */,
 				93385A5E1E27B73D001980DC /* URLViewController.h */,
 				93385A5F1E27B73D001980DC /* URLViewController.m */,
+				93F946AB208B250C0028B49B /* AppImages.xcassets */,
 				9310311C17AC9F2D003BA1EE /* Supporting Files */,
 			);
 			path = UIWebViewDemo;
@@ -166,9 +163,6 @@
 				9310311E17AC9F2D003BA1EE /* InfoPlist.strings */,
 				9310312117AC9F2D003BA1EE /* main.m */,
 				9310312317AC9F2D003BA1EE /* UIWebViewDemo-Prefix.pch */,
-				9310312717AC9F2D003BA1EE /* Default.png */,
-				9310312917AC9F2D003BA1EE /* Default@2x.png */,
-				9310312B17AC9F2D003BA1EE /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -213,7 +207,7 @@
 				ORGANIZATIONNAME = uc;
 				TargetAttributes = {
 					9310311117AC9F2D003BA1EE = {
-						DevelopmentTeam = 63WDBES6G3;
+						DevelopmentTeam = MYUGZ4C9UY;
 					};
 				};
 			};
@@ -240,9 +234,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9310312017AC9F2D003BA1EE /* InfoPlist.strings in Resources */,
-				9310312817AC9F2D003BA1EE /* Default.png in Resources */,
-				9310312A17AC9F2D003BA1EE /* Default@2x.png in Resources */,
-				9310312C17AC9F2D003BA1EE /* Default-568h@2x.png in Resources */,
+				93F946AC208B250C0028B49B /* AppImages.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -370,11 +362,13 @@
 		9310313617AC9F2D003BA1EE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 63WDBES6G3;
+				DEVELOPMENT_TEAM = MYUGZ4C9UY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -386,7 +380,7 @@
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.professor.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.professor.xxx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
@@ -396,11 +390,13 @@
 		9310313717AC9F2D003BA1EE /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = "";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 63WDBES6G3;
+				DEVELOPMENT_TEAM = MYUGZ4C9UY;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -412,7 +408,7 @@
 				INFOPLIST_FILE = "UIWebViewDemo/UIWebViewDemo-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.professor.demo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.professor.xxx;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = app;
